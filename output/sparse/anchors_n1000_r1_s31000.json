@@ -1,0 +1,36 @@
+{
+  "configuration": {
+    "kind": "anchors",
+    "n": 1000,
+    "rank": 1,
+    "seed": 31000
+  },
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_sparse.py": "56912ce7057e27dea3be930d4e9552eb1e49b74b13473833e24b8a68b63dff6f",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe"
+    },
+    "data_kind": "synthetic"
+  },
+  "observed_pairs": 5979,
+  "total_possible_pairs": 499500,
+  "heldout_pairs_evaluated": 20000,
+  "observed_relative_error": 4.4210711287447807e-16,
+  "heldout_relative_error": 6.021838269907689e-16,
+  "covariance_relative_error": 1.073031845163109e-15,
+  "diagonal_relative_error": 5.308356072109689e-15,
+  "seconds": 0.0001846670638769865,
+  "diagnostics": {
+    "anchor_cross_condition": 1.0,
+    "anchor_gram_asymmetry": 0.0,
+    "minimum_retained_gram_eigenvalue": 0.06273800028726295,
+    "negative_diagonal_count_before_projection": 0,
+    "minimum_diagonal_before_projection": 0.3004283533021024,
+    "regularized": false
+  }
+}

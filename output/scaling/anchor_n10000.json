@@ -1,0 +1,35 @@
+{
+  "configuration": {
+    "n": 10000,
+    "rank": 3,
+    "seed": 71000
+  },
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_scaling.py": "395b6c3822a2a83562a85768ce17beca79061952c57fe55a5205e76babaa89da",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432"
+    },
+    "data_kind": "synthetic"
+  },
+  "observed_pairs": 119922,
+  "population_response_evaluation_seconds": 0.007154083112254739,
+  "reconstruction_seconds": 0.003651584032922983,
+  "distance_relative_error_20000_sampled_pairs": 3.9797298545538366e-15,
+  "diagonal_relative_error": 1.7165367573034843e-14,
+  "mean_relative_error": 9.035896935365098e-16,
+  "diagnostics": {
+    "anchor_cross_condition": 5.846051424001481,
+    "anchor_gram_asymmetry": 7.935654686207022e-16,
+    "minimum_retained_gram_eigenvalue": 0.022152360525477158,
+    "negative_diagonal_count_before_projection": 0,
+    "minimum_diagonal_before_projection": 0.4000212864643744,
+    "regularized": false
+  },
+  "scope": "Population reconstruction only; no finite respondent sample or million-way integration.",
+  "stored_edges_bytes": 1918752
+}

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite the relevant manuscript when using its results, and this repository when using the accompanying code."
+title: "Gaussian Correlated Choice: Identification, Applications, and Commercial Research"
+type: software
+authors:
+  - family-names: Wuebben
+    given-names: Bernd Johannes
+repository-code: "https://github.com/bwuebben/gaussian-correlated-choice"
+year: 2026
+keywords:
+  - Gaussian random utility
+  - multinomial probit
+  - paired comparisons
+  - experimental design
+  - factor analysis
+  - contest inversion

@@ -1,0 +1,1212 @@
+\pdfoutput=1
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,tabularx,longtable,microtype,adjustbox,xurl}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[round,authoryear]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\emergencystretch}{3em}
+\setlength{\parskip}{3pt}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}\newtheorem{example}{Example}
+\title{Commercial Value from Correlated Choice Models:\\
+Offer Optimization, Event Trading, and AI Service Routing}
+\author{Bernd Johannes Wuebben}
+\date{September 6, 2026\\[4pt]\small Commercial research and validation plan}
+\hypersetup{pdftitle={Commercial Value from Correlated Choice Models},pdfauthor={Bernd Johannes Wuebben}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Correlated choice models can support commercial decisions when dependence changes
+which action is profitable and the relevant outcomes can be measured. They do
+not, by themselves, establish a trading advantage, demand for a product, or an
+agent's absolute reliability. We develop three implementable proposals:
+contribution-profit optimization for merchants, relative-value trading in event
+contracts, and routing among AI services with verification and fallback. A sparse
+Gaussian identification result provides a possible way to learn substitution
+from controlled comparisons; its experimental assumptions and repeated-sampling
+cost are retained. We distinguish exact payoff relationships from speculative
+price convergence, and relative performance from successful task completion.
+For each proposal we specify the customer or counterparty, decision rule,
+required data, incumbent comparison, unit economics, and conditions for stopping.
+The provisional first business is a paid merchant experiment on an existing
+controlled sales channel. Prediction-market research begins with settlement
+semantics and executable costs; broad agent marketplaces and financial guarantees
+are deferred. Reproducible calculations quantify discount cannibalization,
+sample-size requirements, customer scale, trading capacity, and correlated
+fallback failures. These calculations are illustrative assumptions, not measured
+commercial results. No strategy backtest, customer pilot, or investment return
+is claimed.
+\end{abstract}
+\vspace{4pt}
+\noindent\textbf{Decision in brief.} Obtain control of one economically valuable
+decision and its realized outcomes. Sell a measured improvement in that decision.
+Use the correlated model only if it improves net value against a simpler policy.
+
+\section{The commercial question}
+The relevant question is whether a decision-maker will pay for a measurable
+improvement in an existing activity. A merchant already chooses promotions. A
+trader already commits capital at quoted prices. An enterprise already pays for
+automated work and corrects failures. These activities have observable costs,
+incumbent policies, and people responsible for their budgets. They are suitable
+starting points for assessing the commercial value of choice models.
+
+The research motivating this paper has two parts. \citet{cotton2021,cotton2026}
+study forward probabilities and inversion in stochastic contests: a joint
+performance model maps relative means to winning probabilities, and inversion
+fits relative means to specified probabilities under a chosen shock law.
+\citet{wuebbenident} give an experimental identification result for a stable
+Gaussian factor model with idiosyncratic noise. Designed binary interventions
+identify the law of performance differences under explicit conditions.
+\citet{wuebbencompanion} explain applications and limitations through synthetic
+examples. The present paper asks what an operator must add before those results
+can support revenue or trading profit.
+
+The commercial contribution is a set of decision specifications and falsifiable
+investment cases. It is not a new general theory of pricing or routing. In
+particular, the existence of a fast inverse does not establish that the true
+dependence structure is known, that a competitor is mispricing an event, or that
+a buyer will purchase a new service. A public mathematical result also cannot
+be treated as an exclusive commercial asset. A defensible business would need
+customer access, permission to collect useful outcomes, reliable execution,
+and an improvement large enough to cover acquisition and delivery costs.
+
+\subsection{A provisional ordering}
+Table~\ref{tab:ranking} ranks the proposals by the feasibility of demonstrating
+economic value. This is a judgment conditional on access, not an estimate of
+market size. No merchant, enterprise design partner, trading account, or initial
+capital commitment is assumed to exist. The planning case is a founder-led team
+with one technical builder and part-time domain support. All financial amounts
+are in US dollars; they are not forecasts of local salaries or legal costs.
+
+\begin{table}[htbp]\centering\small
+\begin{tabularx}{\textwidth}{p{.19\textwidth}XX}
+\toprule
+Proposal & First economically meaningful test & Provisional priority \\
+\midrule
+Merchant offers & Randomized increase in realized contribution profit after
+returns, discounts and operating costs & First business if a merchant grants
+offer control and sufficient traffic \\
+Event-contract trading & Positive net profit under exact settlement rules,
+conservative fills and capital charges & Bounded research project; deployment
+requires independent evidence of executable advantage \\
+AI service routing & Lower total cost at an agreed quality and latency standard
+on a buyer's actual workflow & First business instead if enterprise data and a
+budget owner are accessible \\
+Agent marketplace & Repeat transactions between existing buyers and providers
+with a reason to pay an intermediary & Expansion after a routing service has
+customers and repeat volume \\
+Failure guarantees & Measured loss frequency, severity, dependence and funded
+contractual obligations & Defer until failure economics are established \\
+\bottomrule
+\end{tabularx}
+\caption{Access-dependent priorities. These are proposed tests, not completed
+experiments or market-size estimates.}\label{tab:ranking}
+\end{table}
+
+The default recommendation is to sell a merchant profit experiment on a channel
+the merchant already controls. The first product need not depend on AI shopping
+traffic. If an enterprise workflow owner is substantially easier to reach,
+verified service routing can take its place. Running two full businesses before
+either has a paying customer would consume the same limited engineering and
+sales resources. A small prediction-market data study may be justified, but it
+has its own time and expense limit.
+
+\subsection{Evidence available at the drafting date}
+The two local research manuscripts contain synthetic calculations. They contain
+no measured merchant response, enterprise task-outcome panel, or live trading
+record. The present financial tables are generated from printed planning
+assumptions. Public documentation and primary research were checked on
+6 September 2026 to establish that the relevant interfaces and competing
+approaches exist. Product announcements are evidence of infrastructure, not
+evidence of our ability to obtain access or earn a return.
+
+That distinction changes the research sequence. A prototype demonstrating
+correct probability arithmetic can be useful, but the first investment decision
+should concern data and customer access. There is no basis here for an expected
+Sharpe ratio, a company valuation, a claimed addressable market, or a probability
+of commercial success.
+
+\section{What the choice model identifies, and what a business still needs}
+\subsection{The experimental result}
+For a fixed task population or shopping context, consider latent utilities
+\begin{equation}\label{eq:rum}
+ U_i=\mu_i+v_i^TZ+\sqrt{d_i}\eta_i,\qquad
+ Z\sim N(0,I_r),\quad \eta_i\sim N(0,1),
+\end{equation}
+where $d_i\geq0$ and $Z,\eta_1,\ldots,\eta_n$ are independent.
+The covariance is $\Sigma=VV^T+\diag(d)$. An alternative wins a menu when its
+utility is greatest. The model assumes that restricting the menu preserves the
+joint law of the retained utilities.
+
+If a controlled intervention adds a known $t$ to alternative $i$ without changing
+the other utilities or shock law, its binary response against $j$ is
+\begin{equation}\label{eq:probit}
+ q_{ij}(t)=\Phi\left(\frac{\mu_i-\mu_j+t}{s_{ij}}\right),\qquad
+ s_{ij}^2=\Sigma_{ii}+\Sigma_{jj}-2\Sigma_{ij}.
+\end{equation}
+Two interior population responses at $t_1<t_2$ identify the mean difference and
+contrast variance. With $z_\ell=\Phi^{-1}(q_{ij}(t_\ell))$,
+\begin{equation}
+ s_{ij}=\frac{t_2-t_1}{z_2-z_1},\qquad
+ \mu_i-\mu_j=s_{ij}z_1-t_1.
+\end{equation}
+For complete pair data, define $D_{ij}=s_{ij}^2$, $D_{ii}=0$, and
+$P=I-\one\one^T/n$. Then $P\Sigma P=-PDP/2$ determines the Gaussian contrast
+law and consequently all menu and ranking probabilities on those alternatives.
+
+The sparse result of \citet{wuebbenident} assumes $r\geq1$,
+$n\geq3(r+1)$, positive pairwise contrast variances, and three disjoint groups
+of $r+1$ alternatives whose factor loadings are each affinely independent.
+Comparing every alternative with those reference alternatives identifies
+$P\mu$, $PVV^TP$ and $d$, uniquely within factor dimension at most $r$.
+With $k=3(r+1)$ references, the design has
+\begin{equation}\label{eq:counts}
+ m=kn-\frac{k(k+1)}2
+\end{equation}
+distinct pairs. The reconstruction takes $O(nr^2+r^3)$ arithmetic and $O(nr)$
+storage in factor form. Local statistical stability additionally requires
+bounded parameters, positive idiosyncratic variances, informative treatment
+responses and uniformly conditioned reference groups. Unknown-rank recovery,
+automatic selection of conditioned references, and unrestricted random-pair
+recovery with unknown diagonal variances are not established by that theorem.
+
+The number of trials can dominate the arithmetic cost. With $N$ independent
+observations at each of two levels per pair, there are $2mN$ binary observations.
+Table~\ref{tab:anchorcost} illustrates this distinction for $r=3$. The stated
+$N=100$ is a counting assumption; it is not claimed to provide adequate
+accuracy for any commercial task. Reusing one sealed score draw at many offsets
+does not create independent new task outcomes. If full score vectors are
+available, their differences should generally be estimated directly.
+
+\begin{table}[htbp]\centering\small
+\input{generated/anchors.tex}
+\caption{Observation counts under the minimum three-group design with twelve
+references. Two population probabilities per pair require repeated sampling.}
+\label{tab:anchorcost}
+\end{table}
+
+\subsection{Three gaps between identification and economic value}
+First, an observed discount $h$ gives a utility shift $\beta h$ only under an
+additive response with a common coefficient $\beta$. A common unknown positive
+coefficient permits a shared normalization, but unrestricted customer
+heterogeneity, attention effects and perceived-quality changes can invalidate
+a pooled Gaussian response. Randomization identifies the effect of the actual
+offer policy even when this structural interpretation fails. It does not make
+the structural assumptions true.
+
+Second, financial trading does not ordinarily provide this intervention. Buying
+an election contract changes inventory and perhaps its price; it does not add
+a known amount to the underlying candidate's electoral performance. Calibrating
+a contest model from market prices therefore remains model-based inversion.
+The sparse experimental theorem does not identify electoral covariance from
+order flow.
+
+Third, relative success and absolute success are different outcomes. This
+matters directly to the proposed agent exchange and its guarantees.
+
+\begin{proposition}[Rank information does not identify task completion]
+Suppose all observations are comparisons of $U_i+t$ with $U_j$, for arbitrary
+known offsets and menus. Without an absolute reference or additional outcome
+observations, these comparisons do not identify
+$\Prob(U_i\geq\tau)$ for a fixed externally defined success threshold $\tau$.
+\end{proposition}
+\begin{proof}
+For any constant $c$, replacing $U$ by $U+c\one$ preserves every comparison
+and every ranking, including all additive pair experiments. For a nondegenerate
+Gaussian coordinate, $\Prob(U_i+c\geq\tau)$ tends to zero or one as $c$ tends
+to minus or plus infinity. The observations are unchanged along this family.
+\end{proof}
+
+This is an elementary consequence of the location indeterminacy, rather than
+a new identification theorem. A deterministic benchmark with an observed
+pass/fail outcome can supply additional information. Its validity must be
+established independently: adding a reference label to a leaderboard does not
+measure actual remediation cost. Common random shocks are likewise invisible
+to differences when added to every score and can change joint absolute
+failure probabilities. Correlation of latent ranking scores is not automatically
+correlation of operational failures.
+
+\subsection{When greater probability accuracy can pay}
+Let $a$ denote an admissible offer or selection policy and $Y$ its outcome.
+Suppose its realized contribution $g_a(Y)$ lies in an interval of width at most
+$M$, and let $p_a$ and $\widehat p_a$ denote the true and fitted outcome laws.
+These distributions include the outside option when no purchase is possible.
+For discrete outcomes, our convention is
+$\TV(p,\widehat p)=\tfrac12\sum_y|p(y)-\widehat p(y)|$.
+
+\begin{proposition}[A sufficient decision-accuracy bound]\label{prop:value}
+If $\TV(p_a,\widehat p_a)\leq\epsilon$ for every action in a fixed finite
+action set, choosing an action with the largest fitted expected contribution
+loses at most $2M\epsilon$ in true expected contribution relative to the
+best action in that set.
+\end{proposition}
+\begin{proof}
+For a function with range width at most $M$, the difference between its
+expectations under two distributions is at most $M$ times their total
+variation distance. Let $a^*$ maximize true value and $\widehat a$ maximize
+fitted value. Insert the fitted values of these two actions between their true
+values. The fitted-value difference is nonpositive in the regret calculation;
+the two remaining errors are each at most $M\epsilon$.
+\end{proof}
+
+The bound is a decision-theoretic diagnostic, not a commercial guarantee.
+Actual profit can have refund and loss tails beyond the assumed interval.
+Moreover, the local identification paper's fixed-menu bound does not provide
+uniform error control for arbitrary prices, contexts or changing menus.
+With $M=100$ and $\epsilon=0.01$, the bound permits a loss of \$2 per decision,
+which can exceed the improvement being pursued. Reporting lower probability
+error is consequently insufficient. The operational test is incremental profit
+or total cost on future decisions.
+
+\section{The first business: merchant contribution-profit optimization}
+\subsection{Buyer, problem and initial product}
+The initial buyer is a head of e-commerce or pricing, with a finance owner who
+can approve the profit measurement. The qualifying merchant sells several
+substitutable products, can vary offers on an owned channel, has reliable
+contribution-cost data, and has enough eligible traffic to run a powered test.
+The channel can be a product comparison page, a quote flow, or a merchant-owned
+shopping assistant. A store selling only a few high-value items each week is
+unlikely to generate the needed experimental evidence quickly.
+
+The proposed product returns one approved offer from a small discrete set,
+subject to merchant-specified margin and inventory constraints. It records the
+decision, follows the resulting order through returns, and produces a finance-
+reconciled treatment-control comparison. Its sales proposition is a measured
+increase in retained contribution profit. Conversion alone is a misleading
+target when incentives are costly or sales move away from higher-margin items.
+
+The first implementation should use a merchant's existing experimentation and
+checkout systems wherever possible. This is already a competitive market.
+Intelligems advertises price, discount, shipping and checkout experiments with
+cost-of-goods-based metrics \citep{intelligems}. The commercial comparison is
+therefore against the merchant's current policy and a competent experiment-led
+alternative, not against a fictional operator who discounts at random forever.
+The correlated model earns a place only if cross-product substitution improves
+decisions beyond those alternatives.
+
+\subsection{The profit objective}
+Let $x$ contain information available before the offer: eligible product set,
+stock, customer or session attributes that may be used, delivery constraints,
+and time. Let $S(x)$ be the observed choice set, with $0$ denoting no purchase
+within the prespecified attribution window. For products owned by the merchant,
+let $M\subseteq S(x)$ and let $d$ be an admissible discount vector. Define
+\begin{equation}\label{eq:merchant}
+ V(d,x)=\sum_{i\in M}p_i(d\mid x,S)
+             \overline m_i(d,x)-c_{\rm decision}(d,x).
+\end{equation}
+Here $\overline m_i(d,x)$ is expected retained contribution conditional on buying
+$i$ under that policy. It includes collected revenue less discounts, product
+cost, payment and channel charges, shipping subsidies, expected returns,
+chargebacks and other incremental servicing costs. The decision cost includes
+charges incurred even without a purchase. Estimation should use the realized
+transaction ledger as the outcome rather than assume these conditional margins
+are policy-invariant.
+
+The policy solves $\max_{d\in\mathcal D(x)}V(d,x)$, with an unchanged offer
+included in $\mathcal D(x)$. Floors on retained margin, offer ceilings, stock
+limits and a restricted action set are explicit business constraints. For a
+single product with constant pre-discount contribution $m$ and differentiable
+purchase probability $p(d)$, an interior stationary point satisfies
+\begin{equation}
+ (m-d)p'(d)=p(d).
+\end{equation}
+This is only a first-order condition. Without additional shape restrictions,
+it proves neither uniqueness nor global optimality; the finite approved action
+set can instead be evaluated directly.
+
+For multiple products with fixed pre-discount margins and a common utility
+response $\beta$ to money, let $L_{ij}=\partial p_i/\partial\mu_j$. Then,
+locally and with other discounts held fixed,
+\begin{equation}\label{eq:cannibal}
+ \frac{\partial V}{\partial d_j}
+ =-p_j+\beta\sum_{i\in M}(m_i-d_i)L_{ij}
+       -\frac{\partial c_{\rm decision}}{\partial d_j}.
+\end{equation}
+The sum makes substitution economically relevant. A discount can divert buyers
+from a high-margin product owned by the same merchant. For smooth additive
+random utility, competing alternatives have nonpositive cross derivatives;
+the magnitude and ownership of diverted demand matter. If margins, return
+rates or service costs depend on the offer, their derivative terms must also
+be included. Equation~\eqref{eq:cannibal} is a restricted explanatory calculation,
+not the proposed estimator for an unrestricted transaction ledger.
+
+\begin{table}[htbp]\centering\small
+\input{generated/offers.tex}
+\caption{Illustrative discount cannibalization. A contributes \$60 before its
+discount and B contributes \$100. Probabilities are supplied scenario inputs,
+not data or a fitted Gaussian demand system. Contribution is per eligible
+session, before any common decision charge.}\label{tab:offers}
+\end{table}
+
+Table~\ref{tab:offers} gives a simple reason to optimize the merchant's full
+contribution. A \$10 discount raises conversion from 10\% to 12\%, yet lowers
+expected contribution from \$8.400 to \$7.500 per session. A \$5 discount gives
+\$8.775 and is best among the three supplied actions. The example demonstrates
+an accounting possibility, not a measured discount response. It establishes
+neither Gaussianity nor a likely magnitude of attainable uplift.
+
+\subsection{What can actually be observed}
+A merchant's order feed records its own sales, not the losing offers at every
+competitor. Nor does a completed checkout reveal every product that a buyer
+considered. Accordingly, the first experiment uses a controlled, logged
+merchant menu. If competitor offers are missing, a competitor-specific
+substitution matrix is not claimed. No purchase is an observed outcome within
+the merchant channel; it does not distinguish postponement, abandonment, or
+purchase elsewhere without additional data.
+
+The simple winner model concerns one choice. A multi-item basket, subscription
+renewal, stockpiling response, or discount that changes future shopping requires
+a different outcome model. The first pilot should restrict the setting or
+evaluate the complete basket and repeat-purchase contribution directly. It
+should not manufacture a single-choice likelihood from a basket transaction.
+
+Prices in a scraped catalog likewise do not establish what the customer saw.
+The required menu log records actual exposures, prices, inventory and delivery
+terms at the decision time. When that log cannot be obtained, a randomized
+offer-policy test may still identify the merchant's overall effect, but the
+structural account of who substituted for whom remains limited.
+
+\subsection{AI commerce is a distribution option}
+Google's Universal Commerce Protocol describes checkout capabilities and
+extensions, including discounts \citep{ucp}. Google's May 2026 announcement
+describes an expansion of its Direct Offers pilot \citep{directoffers}. These
+interfaces make merchant offer logic a relevant application, but neither
+announcement establishes open access to a real-time auction over a buyer's
+full consideration set.
+
+OpenAI's September 2025 announcement introduced the Agentic Commerce Protocol
+with Stripe \citep{acp}. It should be read as a dated launch announcement.
+Shopify's June 2026 description distinguishes channel-specific checkout paths,
+including merchant-site checkout through an in-app browser for ChatGPT
+\citep{shopifycommerce}. The integration route must therefore be confirmed for
+the chosen merchant and channel. A protocol specification does not guarantee
+that every checkout customization or randomized offer can be applied there.
+
+The practical first release works on the merchant's existing site or quote
+flow. An AI channel is added when its documented interface supports the needed
+offer action, exposure log and outcome attribution. This avoids making early
+revenue depend on an unconfirmed platform permission. Public growth claims
+about AI referrals are not converted into a serviceable market estimate here.
+
+\section{Measuring merchant value and earning the fee}
+\subsection{A prospective experiment}
+The pilot has four stages: instrumentation, randomized exploration, policy
+selection using only accumulated training data, and a separate prospective
+comparison of the selected policy with the incumbent. An A/A period first checks
+that assignment, exposure, orders and returns reconcile without an artificial
+treatment difference. The same customer receives a consistent assignment where
+cross-session contamination is plausible. Inventory interference may require
+randomization across suitable time blocks or product groups instead; its design
+and uncertainty calculation must match the unit of randomization.
+
+The primary outcome is retained contribution per eligible randomized unit,
+including units with zero purchases. The denominator is set before treatment.
+Order cancellations and returns are included after an agreed maturity window.
+Changing the denominator to purchasers would condition on a treatment outcome.
+Total contribution across the owned substitute set is measured, so a gain on
+one product cannot conceal losses on another.
+
+The policy comparison includes: the existing offer rule, a simple segmented
+best-offer policy, a logit or other standard response model where appropriate,
+and the correlated model. Models receive the same information available before
+the decision. If the correlated model does not increase prospective net profit
+after its additional computational and maintenance costs, it is removed from
+the commercial product. A profitable simple policy remains a legitimate
+business result.
+
+Exploration records the probability $e(a\mid x)$ of every assigned action.
+For a fixed candidate policy $\pi$, one possible supplementary offline estimator
+is the doubly robust policy-value estimator \citep{dudik2011}:
+\begin{equation}\label{eq:dr}
+ \widehat V(\pi)=\frac1T\sum_{t=1}^T\left[
+ \sum_a\pi(a\mid x_t)\widehat m(x_t,a)
+ +\frac{\pi(a_t\mid x_t)}{e(a_t\mid x_t)}
+       \{Y_t-\widehat m(x_t,a_t)\}\right].
+\end{equation}
+Here $Y_t$ is realized contribution and $\widehat m$ is a fitted conditional
+mean. This requires consistency of outcomes, action overlap and a defensible
+assignment mechanism; nuisance predictions and policy selection are separated
+from their evaluation observations. An unoffered action cannot be evaluated
+by assigning it an invented propensity. Cluster dependence and adaptive
+assignment require corresponding inference. The final customer claim is based
+on the prospective policy comparison, not the best-looking value after searching
+many policies on the same log.
+
+\subsection{Traffic can be the binding constraint}
+For a prespecified comparison of two equally sized independent groups with
+common outcome standard deviation $\sigma$, a normal approximation to 80\%
+power at a two-sided 5\% level gives
+\begin{equation}\label{eq:power}
+ n_{\rm arm}\simeq
+ \frac{2(z_{0.975}+z_{0.80})^2\sigma^2}{\Delta^2}.
+\end{equation}
+This is a planning calculation, not an exact test for heavy-tailed profit data.
+Table~\ref{tab:power} sets $\sigma=\$26$, approximately the standard deviation
+of the unchanged-offer scenario in Table~\ref{tab:offers}. A pilot must replace
+this assumption with an estimate from its own historical or A/A data.
+
+\begin{table}[htbp]\centering\small
+\input{generated/power.tex}
+\caption{Illustrative sample sizes for a fixed two-policy comparison, 80\%
+power, two-sided 5\% level and \$26 standard deviation per independent unit.
+These do not include policy-learning samples or a multiple-comparison penalty.}
+\label{tab:power}
+\end{table}
+
+Detecting \$0.10 per session requires over two million independent observations
+in this scenario. Detecting the illustrative \$0.375 improvement requires
+150,922. If only 10\% of store traffic is eligible, total site traffic is not
+the available sample size. Repeated users, seasonal changes, return delays and
+inventory dependence further affect feasibility. Small pilots should target a
+larger measurable business decision or run longer; they should not describe an
+underpowered null result as evidence of no effect.
+
+The selling threshold is economic as well as statistical. Before the comparison,
+the parties specify the smallest benefit that covers the customer's switching
+and operating costs and the supplier's fee. A lower confidence bound above that
+threshold is the proposed rollout condition. A nonsignificant estimate triggers
+the previously agreed maximum-duration or maximum-budget decision, rather than
+an indefinite sequence of new segment searches.
+
+\subsection{Commercial terms and attribution}
+The first contract can charge a fixed \$10,000--\$25,000 instrumentation and
+analysis fee, explicitly offered as a negotiating hypothesis. This is a paid
+service deliverable and does not promise a positive treatment effect. Payment
+willingness is untested. A portion can be credited against a later service
+contract if the pilot produces a finance-approved benefit.
+
+For a performance component, let $\Delta\Pi_H$ denote estimated incremental
+contribution over an agreed measurement period $H$. A possible fee is
+\begin{equation}\label{eq:fee}
+ F_H=\tau\max\{0,\underline{\Delta\Pi}_H\},
+\end{equation}
+where $\underline{\Delta\Pi}_H$ is a prespecified conservative estimate, such as
+a valid lower confidence bound, and $\tau$ is the negotiated share. The
+measurement schedule and handling of repeated looks are fixed in advance.
+Loss carryforwards and periodic reconciliation prevent the supplier from
+collecting on favorable noisy periods while discarding unfavorable periods.
+An alternative is a fixed recurring fee following a successful experiment;
+value-based pricing is not mandatory.
+
+The agreement must define eligibility, assignment, returns, horizon, baseline
+changes, taxes, incremental servicing costs and audit rights. For a subscription
+product, retaining a randomized control fraction can support continued
+measurement, subject to commercial and power considerations. Annual revenue
+projections must use the traffic actually receiving the policy, not all store
+sales. Training and measurement costs, as well as the foregone gains of the
+control group, belong in the total business case.
+
+\subsection{Customer economics and supplier scale}
+Let $G$ be annual baseline contribution on eligible traffic to which the new
+policy is applied, $u$ its fractional improvement, and $\tau$ the effective fee
+share actually earned after measurement rules. A simplified mature account has
+\begin{equation}\label{eq:scale}
+ R=\tau uG,\qquad
+ \Pi_{
+\rm supplier}=J(R-c)-F,
+\end{equation}
+where $J$ is the customer count, $c$ annual direct delivery cost per customer,
+and $F$ annual fixed operating cost. This expression excludes one-time pilot
+fees and assumes collected fees, stable accounts and no bad debt. In an actual
+plan, onboarding, churn, acquisition expense and collection timing are modeled
+explicitly. A statistically conservative fee can make realized $R$ lower than
+the deterministic scenario.
+
+\begin{table}[htbp]\centering\small
+\begin{adjustbox}{max width=\textwidth}\input{generated/merchant.tex}\end{adjustbox}
+\caption{Illustrative mature-account economics: $G=\$10$ million,
+$\tau=15\%$, $c=\$12,000$ and $F=\$600,000$ annually. The last column targets
+\$1 million annual operating profit before tax, with customer counts rounded up.
+The uplifts are assumptions.}\label{tab:merchantecon}
+\end{table}
+
+At the 3\% assumption, the customer gains \$300,000 before the fee and retains
+\$255,000 afterwards, before its additional internal costs. The supplier earns
+\$45,000 revenue and \$33,000 direct contribution per customer. Twenty such
+customers produce \$900,000 revenue but only \$60,000 operating profit after
+the assumed fixed expense. Forty produce \$720,000 operating profit. Forty-nine
+are needed to exceed \$1 million. This is a possible valuable company, but it
+requires many substantial eligible accounts or materially better economics.
+
+At \$45,000 per account, \$10 million recurring revenue requires 223 equivalent
+accounts and \$100 million requires 2,223. These are arithmetic requirements,
+not a count of available buyers. Qualifying merchants may be much scarcer than
+the total merchant population because the eligible traffic and contribution
+base are restricted. At an assumed 25\% contribution margin, the \$10 million
+eligible contribution base requires \$40 million eligible annual sales. If only
+10\% of sales are eligible, total sales would need to be \$400 million under
+the same margin assumption. The commercial segment must therefore be chosen
+from eligible economics rather than a generic list of small online stores.
+At a 1\% improvement, direct contribution falls to
+\$3,000 per customer, making the same delivery model unattractive.
+
+Customer acquisition can overwhelm the model as well. A hypothetical \$25,000
+acquisition and onboarding cash outlay takes about 9.1 months to recover from
+\$33,000 annual direct contribution, assuming revenue starts immediately and
+the account remains active. A three-month sales and deployment delay extends
+cash recovery accordingly. An assumption that direct support costs only
+\$12,000 must therefore be tested early. The founder should log implementation
+hours and support demands from the first pilot.
+
+\section{Prediction-market trading: a separate investment case}
+\subsection{The source of possible profit}
+Three different activities must be distinguished. Exact payoff arbitrage buys
+a package whose contractual payoff is bounded below by more than its full
+cost. Statistical relative value trades a forecast of future prices or outcomes
+and can lose. Market making supplies immediacy, earning spreads and possibly
+rebates while taking inventory, adverse-selection and operating risk.
+They require different evidence and should have separate profit attribution.
+
+There is existing research on prediction-market arbitrage.
+\citet{saguillo2025} analyze historical Polymarket inconsistencies and extracted
+profits. That establishes prior analysis and competition; it does not establish
+current accessible opportunities or the performance of the strategy proposed
+here. The appropriate first comparison is a semantics-correct payoff scanner
+with conservative execution costs. A Gaussian contest model is unnecessary for
+identifying an exact relationship between contractual payoffs.
+
+\subsection{Begin with a small, auditable outcome space}
+Choose one venue and one family of contracts referring to the same observable
+quantity, measurement source and resolution time. A family of threshold and
+interval contracts on a single reported scalar is a suitable research target
+if the definitions can be verified. The initial family is selected before
+examining its apparent profit. Different sources, revised versus first releases,
+time zones, missing observations, cancellation and exceptional resolution
+clauses may destroy an apparent equivalence.
+
+Partition all contractually possible outcomes into a finite set $\Omega$.
+Let $A_{\omega j}$ be the terminal dollar payoff of one purchasable instrument
+$j$ in state $\omega$. YES and NO instruments have their own columns. For a
+nonnegative purchase vector $x$ and full acquisition-and-carry cost $K_t(x)$,
+the guaranteed terminal surplus of a completely acquired package is
+\begin{equation}\label{eq:payoff}
+ g_t(x)=\min_{\omega\in\Omega}(Ax)_\omega-K_t(x),\qquad x\geq0.
+\end{equation}
+Displayed depth, lot sizes, cash and position limits constrain $x$. At fixed
+price levels and a suitable linear fee representation, maximizing this surplus
+can be formulated as a linear program; discrete lots and nonlinear costs can
+require a different optimization. Actual venue costs determine the calculation.
+An optimizer does not establish that the state list or settlement definitions
+are complete.
+
+For a mutually exclusive exhaustive partition, buying one YES share of each
+outcome pays one dollar in every state. For two events satisfying
+$A\subseteq B$, buying YES on $B$ and NO on $A$ gives
+\begin{equation}\label{eq:implication}
+ \one_B+(1-\one_A)\geq1.
+\end{equation}
+The three possible $(\one_A,\one_B)$ states $(0,0),(0,1),(1,1)$ pay
+$1,2,1$, respectively. This uses purchasable long instruments and does not
+assume unrestricted short selling. The impossible state $(1,0)$ would pay zero:
+if contract wording permits that state, the proposed lower bound fails.
+
+The cash flows must be comparable in maturity and collateral terms. A void
+refund may have a different payoff from a binary win. Cross-venue packages
+add separate oracle, counterparty, withdrawal and settlement risks and may
+require collateral at both venues without netting. They are a later research
+stage. An automated language model can suggest related contracts, but the
+trading relationship is admitted only after a human-readable payoff map and
+versioned rule references have been checked.
+
+\subsection{Fees can consume the entire discrepancy}
+Kalshi documents market-data and execution APIs, including a public-data
+quick start \citep{kalshiapi,kalshidata}. Its fee document effective
+7 July 2026 gives a general taker formula proportional to
+$0.07MCP(1-P)$, with contract multiplier $M$, share count $C$ and price $P$,
+and lists exceptions and maker charges \citep{kalshifees}. The document's
+rounding text and displayed examples should be reconciled against the venue's
+current calculator and actual fill ledger before production use. A historical
+backtest needs the schedule applicable at the historical trade time.
+
+As an arithmetic illustration, YES and NO asks of \$0.49 each create a gross
+\$0.02 package surplus. Applying coefficient $0.07$ to both legs before
+rounding gives fees of
+\begin{equation}
+ 2(0.07)(0.49)(0.51)=\$0.034986.
+\end{equation}
+The package then loses about 1.50 cents before additional costs. This is not an
+observed quote or a venue invoice. It demonstrates why a two-cent discrepancy
+cannot be judged without its fee and execution context.
+
+Polymarket's documentation likewise distinguishes fee-bearing categories and
+fee parameters \citep{polymarketfees}. Neither venue is represented here by a
+permanent universal fee assumption. Rebates and temporary rewards are excluded
+from the base case and reported separately when actually earned. The model
+also includes bid--ask costs, depth, settlement funding, failed hedges and
+fees of any intermediary used to access the venue.
+
+\subsection{A completed package and an attempted package are different}
+Equation~\eqref{eq:payoff} applies to the acquired package. Independent fills
+of several limit orders are not an atomic transaction. Let $g$ be the net gain
+if every leg fills, $\ell$ the loss if an incomplete package must be unwound,
+and $f$ the probability of that failure. A simplified attempt has expectation
+\begin{equation}\label{eq:legging}
+ (1-f)g-f\ell.
+\end{equation}
+With supplied inputs $g=\$0.006$, $f=5\%$ and $\ell=\$0.15$, this is
+$-\$0.0018$ per attempt. The numbers are illustrative, but the loss mechanism
+is central. Order size is constrained by the weakest leg, measured cancellation
+latency, and the ability to terminate or unwind exposure.
+
+A taker simulation consumes the contemporaneously available depth after the
+assumed processing and network delay. A maker simulation records queue
+position or an explicitly conservative proxy and requires evidence of volume
+trading through that position. Touching a displayed price is not sufficient
+evidence of a fill. If the data cannot identify queue outcomes, report execution
+bounds or collect better data; do not assign favorable fills by default.
+
+Kalshi's documentation separates live and historical endpoints for markets,
+trades and candlesticks \citep{kalshihistory}. Their existence is not proof of a
+complete historical depth-and-queue record. Current order books document
+available bid levels and the YES/NO complement convention \citep{kalshibook}.
+A production research log needs feed sequence integrity, receive timestamps,
+clock checks and observed outages. Permission to use and retain the selected
+feed is a separate deployment prerequisite.
+
+\subsection{A statistical relative-value strategy}
+Only after the payoff and execution baseline is functioning should a stochastic
+model be evaluated. Let $Y$ be a vector of terminal contract payoffs and
+$\widehat q_t=\E_{\widehat P_t}[Y\mid\mathcal F_t]$ a forecast formed from
+information available at time $t$. Here $\mathcal F_t$ contains only data that
+had arrived by the decision time. A family of mutually exclusive contestants
+can use a Gaussian race. Overlapping binary events require a joint state model;
+their probabilities cannot be forced to sum to one as if only one could occur.
+
+For a joint finite-state model with probabilities $\pi_t$, marginal values are
+$q_t=A^T\pi_t$. Recovering $\pi_t$ from marginal prices may be underidentified.
+A regularizer or a Gaussian structure can select one completion but cannot
+turn that selection into observed joint information. In the existing companion,
+two covariances fit the same first-place probabilities but imply different
+ranked-contract values. That is model uncertainty to price and test.
+
+For a long single contract held to resolution, a conservative research rule is
+to consider purchase only when
+\begin{equation}\label{eq:robustentry}
+ \inf_{P\in\mathcal P_t}\E_P[Y_j\mid\mathcal F_t]
+   -\operatorname{ask}_t(j,q)-c_t(j,q)>b_t(j,q).
+\end{equation}
+The ask is the volume-weighted executable acquisition price for quantity $q$,
+$c_t$ includes fees and funding not already in the ask, and $b_t$ is a
+prespecified reserve for estimation and execution error. The set $\mathcal P_t$
+contains models or parameter regions estimated from prior data. Unless it has
+validated statistical coverage, the infimum is a stress test, not a confidence
+bound. A large model uncertainty set may correctly produce no trade.
+
+For convergence trading, the target changes to the future executable exit
+price at a specified horizon. A current residual to a fitted surface supplies
+no evidence that the residual will mean-revert. The study must prespecify its
+exit horizon, maximum holding time, invalidation rule and news exclusions, then
+estimate future net liquidation value on chronological holdouts. Holding to
+settlement and exiting on convergence have different capital and loss profiles;
+their results are reported separately.
+
+The key baselines are current executable prices, a simple calibrated marginal
+forecast, and a low-dimensional event model without the proposed correlated
+contest structure. A comparison that feeds the target's own current price into
+an inversion and then calls the reconstructed target an independent forecast
+is circular. Leave-target-out calibration can prevent this particular defect,
+but it still needs genuine future-outcome or future-price validation.
+
+\subsection{Market making needs an order-flow model}
+For a specified Gaussian contest, the Jacobian $L=\partial p/\partial\mu$
+describes how model probabilities respond to changes in latent means. The
+identity $dp=L\,d\mu$ does not determine what latent update follows a trade.
+A trade might carry information, hedge an existing position, or express an
+uninformative liquidity demand. The update
+\begin{equation}
+ d\mu=H_t(\hbox{order flow, news, depth, prior state})
+\end{equation}
+is an additional statistical model to be fitted and tested.
+
+Inventory risk also concerns payoffs rather than the covariance of Gaussian
+latent scores. For one exhaustive winner vector with probabilities $p$, the
+payoff covariance is $\diag(p)-pp^T$. For overlapping events it is instead
+$\E[YY^T]-\E[Y]\E[Y]^T$ under a coherent joint law. These are different from
+$\Sigma$ in~\eqref{eq:rum}. Confusing them would produce a faulty hedge.
+
+For illustration, an inventory-adjusted reservation value may subtract the
+marginal increase in a chosen convex risk charge $\mathcal R$:
+\begin{equation}
+ r_j(t,I)=\widehat q_{j,t}
+ -\{\mathcal R_t(I+e_j)-\mathcal R_t(I)\}.
+\end{equation}
+Bid and ask distances from that value must cover conditional adverse selection,
+fees, uncertainty and the empirically estimated fill process. A positive spread
+is not automatically profitable. Markouts after fills, open inventory losses,
+rebates and terminal settlements need separate ledgers. A new operator should
+not begin with autonomous quoting across thousands of contracts before those
+quantities can be reconciled.
+
+\subsection{Research protocol, capacity and stop conditions}
+The first trading research release covers one rule-reviewed family and one
+venue. It records metadata, available depth and trades, with a dated fee table.
+It evaluates exact packages first and model-based opportunities separately.
+The evaluation split is chronological and groups all linked contracts from
+an event together. Training windows, normalization, factor selection, contract
+relationships and model tuning use only information available before the test
+decision. Revised data and late-arriving news use their actual availability
+times. Repeated ticks from one event are not independent investment trials.
+
+The performance report includes realized and unrealized net profit, costs by
+type, maximum drawdown, average and peak capital tied up, exposure to each
+underlying event, failed-package losses, return on committed capital, and
+profits by event and date. It reports the number of independent event clusters
+and all attempted model variants. A Sharpe ratio, if eventually reported, needs
+an appropriate time-series frequency and treatment of autocorrelation; it is
+not constructed from the apparent sample size of quotes.
+
+The initial protocol reserves a completely untouched final event/date block.
+A result driven by one resolved event, disappearing under observed latency,
+or requiring unrecorded fills does not justify deployment. The proposed
+deployment condition is positive net value under a prespecified conservative
+cost case, positive evidence across independent event clusters, and sufficient
+capacity to cover operating expense. Thresholds and the data horizon are fixed
+before examining final results; insufficient events produce an inconclusive
+study, not a passed strategy.
+
+Let $Q$ count completed normalized strategy units per year, with entry, hedge
+and exit legs counted once as a complete economic position. Let $e$ be expected
+net dollars per unit after all variable costs, and $F_T$ fixed annual expense.
+Then the planning requirement for target profit $\Pi_T$ is
+\begin{equation}\label{eq:tradingeconomics}
+ Q=\frac{\Pi_T+F_T}{e}.
+\end{equation}
+The definition prevents multiplying a per-package edge by exchange volume
+that counts both sides or each leg several times.
+
+\begin{table}[htbp]\centering\small
+\input{generated/trading.tex}
+\caption{Illustrative scale needed for \$1 million annual operating profit with
+\$300,000 fixed expense. Addressable activity assumes 1\% participation in
+comparable units; cash capacity assumes 100 annual turns and \$0.50 tied per
+unit. None of these capacity inputs has been measured.}\label{tab:tradeecon}
+\end{table}
+
+At half a cent net edge, the requirement is 260 million completed units per
+year. The illustrative cash requirement is \$1.3 million at 100 turns, but
+\$13 million at ten turns with the same cash per unit. Many multi-leg packages
+need more than \$0.50 per normalized unit, and peak inventory can exceed its
+average substantially. Capital may be partitioned across venues. A large
+headline market volume does not establish that this strategy can trade the
+required volume at the assumed edge.
+
+Before live deployment, the actual legal entity, residence, venue eligibility,
+contract permissions, data rights and position limits must be checked under
+the then-current rules. This paper does not assume account access. The initial
+task is a data and execution study; funding an account or placing orders is a
+separate investment decision after the study.
+
+\section{AI services: verified routing before a marketplace}
+\subsection{Choose a narrow workflow with observable outcomes}
+The candidate buyer is an operations owner with a repeated task and a
+measurable completion standard. One possible first workflow is invoice
+extraction and reconciliation that produces a proposed record for human or
+deterministic verification, rather than autonomously approving payments.
+The task definition specifies fields, source documents, matching rules,
+exceptions and the audit record. A financial-document extraction or software
+maintenance workflow with equally observable outcomes could serve instead.
+
+The first product compares a small number of already procured services, routes
+eligible tasks, verifies outputs, and escalates failures. It does not need an
+open exchange, a token, a universal agent score, or thousands of vendors.
+The buyer pays for lower verified total cost under quality and latency
+constraints. The budget owner must supply representative task data and accept
+the definition of success before model development.
+
+Generic routing already has established alternatives. RouteLLM learns model
+routing from preference data \citep{routellm}; Amazon Bedrock documents a
+commercial intelligent prompt-routing service \citep{bedrock}. The proposed
+distinction would have to be task-specific outcome verification and economically
+useful selection of alternative providers, including failure dependence. It is
+not the mere existence of a router. These sources are evidence of related
+methods and products, not an exhaustive competitor survey or a claim that no
+incumbent can supply the proposed workflow.
+
+\subsection{The objective and the role of dependence}
+For task features $x$ known before dispatch, define total cost
+\begin{equation}\label{eq:routingloss}
+ L_i(x)=\hbox{service cost}+\hbox{verification cost}
+ +\hbox{delay cost}+\hbox{remediation and downstream loss}.
+\end{equation}
+A one-provider rule minimizes $\E[L_i\mid x]$ over eligible services subject
+to the buyer's quality and latency requirements. Marginal conditional costs
+are enough for that decision. Cross-provider covariance need not improve it.
+Furthermore, the provider most likely to rank first can have a worse expected
+loss because winner frequency ignores the magnitude of losses.
+
+Dependence becomes useful when the action includes multiple providers,
+inspection or a fallback. Consider a restricted sequence: run A, detect every
+failure perfectly, run B if A fails, then pay a fixed remediation cost $R$ if
+both fail. Let $F_A,F_B$ be the failure events on the same task, $c_A,c_B$ the
+attempt costs, and $p_A=\Prob(F_A\mid x)$. Under this specific information
+structure,
+\begin{equation}\label{eq:fallback}
+ \E[L_{A\to B}\mid x]
+ =c_A+p_Ac_B+\Prob(F_A\cap F_B\mid x)R.
+\end{equation}
+The B outcome must refer to the actual fallback condition, including any
+context passed from A. Reusing B's unconditional pass rate among ordinary
+tasks would generally be incorrect.
+
+\begin{table}[htbp]\centering\small
+\input{generated/routing.tex}
+\caption{Illustrative fallback economics with marginal failure probabilities
+10\% for both providers, $c_A=\$0.20$, $c_B=\$0.60$ and $R=\$30$.
+The two joint failure laws satisfy the same marginal rates.}\label{tab:fallback}
+\end{table}
+
+The first row of Table~\ref{tab:fallback} corresponds to independent failures.
+The second has strongly overlapping failures. Expected total cost rises from
+\$0.56 to \$2.96 despite unchanged marginal failure rates. This is the
+commercial quantity a complementary-provider model could improve. It is
+measured from paired task outcomes and the actual fallback mechanism, not
+inferred from marginal leaderboard rankings.
+
+Perfect verification is an intentionally strong simplification. An operational
+model needs false acceptances, false rejections, timeouts, correlated outages
+and delay to escalation. For example, an undetected error can bypass fallback
+and incur downstream loss. A router that saves model fees by increasing such
+errors can be much more expensive. Tasks should initially remain within a
+workflow where errors are observable before expensive irreversible actions.
+
+\subsection{Evaluation data and commercial terms}
+The minimum dataset links task features, timestamped provider and model version,
+prompt and tool configuration, charged cost, latency, outputs, verification
+results, eventual corrections and reviewer effort. The outcome standard is
+agreed before evaluation. A subset of tasks is evaluated by multiple providers
+to estimate joint failures. Paired tasks, organization-level shifts and provider
+versions are held together in the evaluation split. Updating a model or
+verification rule creates a new relevant regime.
+
+Task-conditioned Gaussian scores are a possible comparative model. Their
+feature map, score scale, rank and stability must be justified separately; a
+linear expression $\mu_i(x)=x^T\theta_i$ does not prove those properties.
+If cardinal scores and completion labels are observed, use that information
+directly. Sparse winner-only experiments are relevant only when the interface
+withholds scores and allows valid offsets. Artificially reducing rich logs to
+binary wins would discard information the buyer already paid to obtain.
+
+The prospective comparison is against the cheapest acceptable single provider,
+the buyer's incumbent, and a simple validated escalation rule. All costs in
+\eqref{eq:routingloss} enter the primary outcome. Predeclared noninferiority
+margins for serious errors and latency prevent a low-cost policy from passing
+by silently degrading quality. The trial needs sufficient independent tasks
+in the risk-relevant strata, not just an aggregate benchmark score.
+
+A paid implementation and evaluation project is a possible first sale. A
+recurring fee can then be capped as a share of verified savings. For example,
+one million annual tasks, \$0.30 verified net savings per task and a 20\%
+share yield \$60,000 annual supplier revenue. These are assumptions, not a
+quoted market price. The economics are plausible only if bespoke integrations,
+human auditing, security review and ongoing support cost substantially less.
+At much lower task volume or savings, a separately sold router may be a feature
+of another product rather than a viable stand-alone company.
+
+\subsection{Why underwriting and an exchange come later}
+An agent's probability of ranking first cannot price a failure guarantee, as
+Proposition~1 shows. Even an observed pass rate needs a loss model. Expected
+covered loss is frequency times conditional severity, with additional expense
+and capital required for correlated incidents. A minimal premium calculation is
+\begin{equation}
+ \hbox{premium}\ \geq\ \E[\hbox{covered loss}]
+   +\hbox{administration}+\hbox{capital charge}+\hbox{uncertainty allowance}.
+\end{equation}
+Calling the promise a service credit does not establish that every possible
+contract lies outside applicable insurance or other rules. Its legal treatment
+depends on actual obligations and jurisdiction and must be resolved before
+such a product is offered. An initial bounded remediation service can instead
+be costed as an operational activity with explicit limits.
+
+Rare-event evidence is expensive. For $N$ independent, identically distributed
+trials with zero failures, an exact one-sided 95\% binomial upper bound is
+\begin{equation}\label{eq:zero}
+ q_U=1-0.05^{1/N}.
+\end{equation}
+At least 373 zero-failure trials are needed to put that bound at or below
+0.8\%; at least 2,995 are needed for 0.1\%. These are best-case counts at a
+fixed sample size, before task heterogeneity, provider changes, multiple claims
+or common incidents. They provide no estimate of loss severity and no evidence
+about rare catastrophic failures absent from the task sample.
+
+An open marketplace adds provider acquisition, buyer acquisition, identity,
+dispute resolution, payments and an incentive to transact through the platform
+again. Reputation research recognizes task heterogeneity and evaluation
+incentives \citep{agentreputation}; that is not evidence that a new exchange
+has demand. The service should expand into marketplace functions only after
+existing customers repeatedly request provider discovery or procurement and
+will pay for it. A take rate must compensate a continuing service, otherwise
+repeat buyers and providers have a reason to contract directly.
+
+\section{Execution as a business plan}
+\subsection{Access determines the first product}
+The immediate decision is which party will provide an executable pilot. A
+qualifying merchant supplies offer control, exposure logs, cost accounting and
+sufficient traffic. A qualifying enterprise supplies representative tasks,
+verification outcomes, provider access and an accountable budget owner.
+Institutional trading relationships may instead make a dealer-inquiry product
+more accessible. Cotton's original inquiry application selects dealers while
+accounting for inquiry costs \citep{cotton2021}; the existing companion explains
+the dependence benefit.
+
+A dealer-inquiry service would require timestamped invitations, responses,
+prices, no-quotes, sizes, inventory context and executions, including outcomes
+for losing dealers. Public transaction prints alone do not reveal the
+counterfactual offers of uninvited dealers. The decision objective would be
+execution value after inquiry and information-leakage costs, not an inferred
+dealer ranking. This is a conditional alternative if a desk can supply the
+required logs and support a controlled evaluation. No such relationship is
+assumed in the present plan.
+
+The potential institutional economics can be expressed without inventing an
+execution result. If a desk routes annual notional $V$ and a controlled study
+finds improvement $b$ basis points in its all-in execution cost, measured in
+dollars per dollar of notional, annual savings are $Vb/10{,}000$. With assumed
+$V=\$50$ billion and $b=0.2$, savings are \$1 million; a 15\% fee would be
+\$150,000 before supplier costs. This illustrates why a few large workflows
+can support a service. The improvement, routed volume and willingness to pay
+remain unmeasured, and the comparison must include no-quotes, lost fills,
+latency and the cost of revealing trading interest. A change in dealer
+selection without a credible counterfactual execution benchmark is insufficient.
+
+The first two weeks should therefore establish whether a party will supply
+the essential data and pay for a defined evaluation. Expressions of interest
+without access or a budget owner are weak evidence. Building a universal
+platform before resolving this question is not justified by the mathematics.
+
+\subsection{A six-month capital allocation}
+Table~\ref{tab:budget} supplies one explicit budget for the main business
+experiment. It includes a founder draw and external technical capacity; it is
+a planning envelope rather than a market salary survey. The founder may be
+able to reduce cash costs, but unpaid labor still has an opportunity cost.
+The budget excludes trading capital, insurance reserves and customer-funded
+discounts. Merchant incentives and support costs are nevertheless included in
+the customer's measured economic outcome.
+
+\begin{table}[htbp]\centering\small
+\input{generated/budget.tex}
+\caption{Illustrative six-month cash budget for one main business pilot and
+initial product. No customer revenue is assumed to finance it.}
+\label{tab:budget}
+\end{table}
+
+The \$200,000 envelope is released by milestones. At most \$20,000 is used
+to establish access, data feasibility and a written pilot scope. The next
+\$40,000 funds instrumentation, baseline measurement and a functioning
+experiment. A further \$60,000 funds the prospective evaluation after those
+steps succeed. The remaining \$80,000 funds productization and a second
+customer only if measured value and delivery economics justify it. These
+tranches sum to the budget; the release conditions matter more than the
+calendar. Failure to satisfy them preserves the unspent balance.
+
+An optional prediction-market study is capped separately at \$20,000 and
+four to six weeks of research effort. It must not consume the main customer's
+implementation capacity. The amount is research expense, with no trading
+balance included. A capital allocation for actual trading is specified only
+after fill, capacity and loss evidence exist. Launching both a trading desk
+and a software company within the same \$200,000 assumption is not proposed.
+
+\subsection{Milestones and decisions}
+\begin{longtable}{p{.13\textwidth}p{.39\textwidth}p{.39\textwidth}}
+\toprule
+Period & Required deliverable & Investment decision \\
+\midrule\endhead
+Weeks 1--2 & A proposed list of 15 relevant buyer conversations; at least one
+budget owner supplies a representative data extract and agrees a priced pilot
+scope, measurement definition and access path & Without qualified access,
+change the customer segment or pause before building the optimizer. The
+conversation target is a plan, not a completed sales funnel. \\
+Weeks 3--6 & Cost ledger, exposure or task log, A/A or equivalent pipeline
+check, simple baseline, sample-size estimate, and maximum trial budget &
+Proceed only if the primary outcome is measurable and the attainable sample
+can detect an economically worthwhile effect. \\
+Weeks 7--12 & Randomized exploration and a locked prospective policy
+comparison; models and parameters dated before evaluation & A validated
+simple-policy benefit can justify continuation. Without model benefit, omit
+the correlated model. Without measurable business benefit, stop or redesign
+within the remaining budget. \\
+Months 4--6 & Mature outcomes, agreed profit or cost reconciliation, invoice
+and collection, second deployment, recorded integration/support hours &
+Proceed to recurring product investment only if a customer pays, the benefit
+survives the full cost ledger, and a second account can be served economically. \\
+After month 6 & Repeat value after changing conditions, renewal evidence,
+and a bottom-up account list with acquisition economics & Expand distribution
+and product scope only as evidence supports them; marketplace and guarantee
+functions remain separate decisions. \\
+\bottomrule
+\end{longtable}
+
+Calendar dates do not override the outcome horizon. Returns or sufficient
+independent events may take longer than twelve weeks. A documented extension
+must have a remaining information objective, cost ceiling and stopping date.
+The relevant milestone is information acquired per dollar spent, rather than
+the number of model features completed.
+
+\subsection{Customer acquisition and defensibility}
+The first sale should be direct and specific: an evaluation of a known
+promotion or service-routing decision with a capped scope and a shared outcome
+definition. Likely introductions are through a relevant commerce agency,
+operations integrator, or existing institutional relationship. These are
+proposed channels; no partnership is claimed. The founder records the budget
+owner, present solution, data access, delivery effort, procurement steps and
+reason for rejection for every serious conversation.
+
+After two implementations, the product should standardize the smallest
+recurring workflow: data connector, decision constraints, policy execution,
+measurement and reconciliation. If each new customer requires a different
+research project, pricing must support a consultancy or the target segment must
+narrow. A consultancy can produce profit, but it has different capacity and
+valuation economics from repeatable software revenue. Labeling custom labor
+as recurring software does not resolve that limitation.
+
+Defensibility would come from permissioned outcome histories, task or product
+taxonomy, reliable integrations, accumulated experimental knowledge and a
+measurement process the customer's finance team trusts. The theorem itself is
+public. Data do not automatically compound across customers: permissions,
+confidentiality and distribution differences may require tenant-specific
+models. A lower-cost platform can integrate a similar optimizer, so the
+customer's recurring reason to buy must be measured and revisited.
+
+\section{What would justify a larger commitment}
+The research program has a clear hierarchy of evidence. Mathematical
+identification establishes what specified experiments can learn under a model.
+Held-out prediction assesses that model on new outcomes. A prospective policy
+experiment measures economic improvement. A paid and renewed contract measures
+whether a customer values the service after delivery costs. Trading requires
+the analogous progression through executable prices, fills, risk, capacity and
+realized capital use. None of these steps substitutes for the next.
+
+The merchant proposal is the provisional first choice because its decision
+can be randomized and its value reconciled on a channel the customer controls.
+The opportunity remains conditional on traffic, data access, attainable effect
+size and acquisition economics. AI service routing can be preferable where
+enterprise access is stronger and absolute outcomes are verifiable.
+Prediction-market research has accessible technical interfaces, but no trading
+advantage follows from coherence alone. Its first commercial question is
+whether enough net executable edge remains after realistic costs.
+
+Three research results would materially strengthen the case: prospective
+evidence that correlated substitution improves profit beyond standard offer
+experimentation; measured savings from complementary fallback providers after
+verification errors; and event-contract returns that survive settlement review,
+chronological holdouts and conservative execution. Until those observations
+exist, a broad exchange or a balance-sheet guarantee would add obligations
+faster than information. The next commitment should purchase the missing
+evidence in a narrow workflow with a paying counterparty.
+
+\appendix
+\section{Minimum data contracts}
+The following schemas describe requirements for a future pilot. No customer
+or exchange dataset with these fields is supplied by this paper.
+
+\paragraph{Merchant decisions.}
+Record a unique decision identifier; pseudonymous assignment unit; UTC
+assignment and exposure times; eligible menu and offer variants; all displayed
+prices, stock and delivery terms; predecision features; policy version and
+assignment probabilities; selected action; order identifiers; and a complete
+outcome window, including no order. Join order-level collected revenue,
+discounts, cost of goods, shipping, fees, cancellations, refunds and return
+processing costs. Store both event time and availability time where they differ.
+Log exposures before observing conversion. Retain the allocation history when
+a customer returns. Keep model-development extracts separate from the final
+prospective measurement sample.
+
+\paragraph{Event-contract decisions.}
+Record venue and contract identifiers; exact rule text or retained permitted
+reference and its version; event-family membership; exhaustive outcome-state
+mapping; resolution time, source and exceptional-state treatment; market
+status; fee schedule and effective date; prices and quantities at every used
+depth level; exchange and local receive timestamps; feed sequence; trades;
+simulated or actual order lifecycle; cancellation delays; partial fills; paid
+fees; collateral; and final settlement cash flows. Simulation, actual order and
+settlement records must have distinct fields. A final report must not silently
+replace unsuccessful simulations with later better prices.
+
+\paragraph{AI tasks.}
+Record task identifier and organization; arrival time; permitted predecision
+features; provider, model and workflow version; supplied tools; routing
+probability; invoice cost; start and end time; timeout; output; verifier
+decision; blinded adjudication where available; later correction; human time;
+and downstream loss or a separately labelled unresolved outcome. A paired
+evaluation must record whether B saw A's output or diagnosis. This changes the
+meaning of the joint failure law.
+
+\section{Questions for the first buyer meetings}
+The proposed interview asks for concrete operating evidence. Which promotion,
+inquiry or task-routing decision is made repeatedly? Who owns its budget and
+can approve a controlled change? What is the current rule and which product
+or internal team already supports it? Which outcomes and costs are recorded,
+including failures, no-purchases and returns? How much eligible volume occurs
+in a month? Can the parties reconcile a representative outcome sample to the
+accounting system? What decisions cannot be randomized, and why? What fee and
+implementation effort would be acceptable if the agreed benefit were measured?
+
+A promising meeting ends with a named data owner, a feasible experiment,
+a costed implementation scope and a paid deliverable. The absence of any one
+does not prove that the entire opportunity is false, but it identifies the
+next uncertainty to resolve. A proposed conversion funnel of fifteen
+conversations to one pilot is a work target, not a forecasted sales conversion
+rate. No outreach has been undertaken for this paper.
+
+\section{Commercial hypotheses and validation requirements}
+The commercial proposals concern model-based event trading, merchant offers,
+agent selection and guarantees. Their investment cases depend on the
+following distinctions and validation requirements.
+\begin{enumerate}
+\item Structural relationships among events are divided into exact payoff
+constraints and statistical dependence. Only the former give contractual
+lower bounds, and those bounds apply after acquiring the package.
+\item The utility Jacobian is used as a sensitivity conditional on a chosen
+model. The mapping from order flow to latent information is a separate
+unproved and unvalidated component.
+\item Discounts are actual interventions on offers. Their interpretation as
+known common-scale utility shifts requires additional assumptions, while a
+randomized policy comparison can assess profit without those assumptions.
+\item Agent rankings are supplemented by absolute completion, cost, latency
+and severity data. A score-offset experiment does not identify those targets
+merely by recovering relative Gaussian performance.
+\item Linear-in-catalog pair counts are reported together with repeated trials,
+conditioning requirements and the cost of new task regimes. There is no
+claim that a million-agent service can be rated cheaply from a few isolated
+comparisons per agent.
+\item Company scale is expressed through collected account revenue, direct
+costs, acquisition effort and customer counts. Large market narratives and
+speculative valuation labels are replaced by conditions a pilot can test.
+\end{enumerate}
+
+\section{Reproducibility and source boundaries}
+All numerical tables are generated by the accompanying economic calculation
+script from a single assumption file. The program checks probability
+normalization, the discount accounting, valid joint-failure probabilities,
+the sample-size formulas, exact implication payoffs and observation counts.
+Inputs and script hashes are stored with the resulting tables. These are
+deterministic calculations, not simulations of observed trading or customer
+behavior. Changing the assumptions changes the projections; no input is
+estimated from commercial data.
+
+From the parent project directory, reproduce the calculations and document with
+\begin{verbatim}
+.venv/bin/python commercial/src/economics.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error \
+  -cd commercial/main.tex
+\end{verbatim}
+The accompanying source register identifies each external claim, its primary
+source and the date consulted. Live interface and fee descriptions may change.
+Historical results cited from other authors have not been independently
+replicated here. No claim of exhaustive novelty, commercial diligence, legal
+clearance or empirical validation is made. The original mathematics
+and application manuscripts are separate works and retain their own proof and
+review boundaries.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

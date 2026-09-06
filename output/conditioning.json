@@ -1,0 +1,184 @@
+{
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_scaling.py": "395b6c3822a2a83562a85768ce17beca79061952c57fe55a5205e76babaa89da",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432"
+    },
+    "data_kind": "synthetic"
+  },
+  "cases": [
+    {
+      "anchor_flattening": 1,
+      "distance_max_perturbation": 0,
+      "heldout_relative_error": 1.498389237417902e-14,
+      "diagnostics": {
+        "anchor_cross_condition": 5.596962947809266,
+        "anchor_gram_asymmetry": 5.054548930859111e-16,
+        "minimum_retained_gram_eigenvalue": 0.024167606409605566,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070270323313,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 1,
+      "distance_max_perturbation": 1e-09,
+      "heldout_relative_error": 7.54883177832523e-09,
+      "diagnostics": {
+        "anchor_cross_condition": 5.596962930808672,
+        "anchor_gram_asymmetry": 1.2150567396799006e-09,
+        "minimum_retained_gram_eigenvalue": 0.024167606667190596,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070238496536,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 1,
+      "distance_max_perturbation": 1e-06,
+      "heldout_relative_error": 7.548804056241379e-06,
+      "diagnostics": {
+        "anchor_cross_condition": 5.596945947277713,
+        "anchor_gram_asymmetry": 1.2150568682056901e-06,
+        "minimum_retained_gram_eigenvalue": 0.024167863994846852,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017038442733961,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.1,
+      "distance_max_perturbation": 0,
+      "heldout_relative_error": 5.389587499574917e-14,
+      "diagnostics": {
+        "anchor_cross_condition": 19.757504679794906,
+        "anchor_gram_asymmetry": 2.8992938311273496e-16,
+        "minimum_retained_gram_eigenvalue": 0.0006469095684847937,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070270323164,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.1,
+      "distance_max_perturbation": 1e-09,
+      "heldout_relative_error": 3.703310723127395e-08,
+      "diagnostics": {
+        "anchor_cross_condition": 19.75750433181796,
+        "anchor_gram_asymmetry": 3.2524671836628425e-09,
+        "minimum_retained_gram_eigenvalue": 0.0006469095919098511,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070379094332,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.1,
+      "distance_max_perturbation": 1e-06,
+      "heldout_relative_error": 3.703199737079148e-05,
+      "diagnostics": {
+        "anchor_cross_condition": 19.757156710477215,
+        "anchor_gram_asymmetry": 3.252429076012556e-06,
+        "minimum_retained_gram_eigenvalue": 0.0006469329895049776,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.40171790119444395,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.01,
+      "distance_max_perturbation": 0,
+      "heldout_relative_error": 1.8531632546570753e-12,
+      "diagnostics": {
+        "anchor_cross_condition": 1969.505224653371,
+        "anchor_gram_asymmetry": 1.4199483918231723e-14,
+        "minimum_retained_gram_eigenvalue": 6.577748689963702e-06,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070270309817,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.01,
+      "distance_max_perturbation": 1e-09,
+      "heldout_relative_error": 6.5172103895838e-07,
+      "diagnostics": {
+        "anchor_cross_condition": 1969.501382890832,
+        "anchor_gram_asymmetry": 3.307086121949303e-09,
+        "minimum_retained_gram_eigenvalue": 6.577761952437126e-06,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.401707514100504,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.01,
+      "distance_max_perturbation": 1e-06,
+      "heldout_relative_error": 0.0006403955841768653,
+      "diagnostics": {
+        "anchor_cross_condition": 1965.670951363193,
+        "anchor_gram_asymmetry": 3.301071079457704e-06,
+        "minimum_retained_gram_eigenvalue": 6.59075893510648e-06,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4021852175597781,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.001,
+      "distance_max_perturbation": 0,
+      "heldout_relative_error": 3.024237817127891e-10,
+      "diagnostics": {
+        "anchor_cross_condition": 196944.7316411424,
+        "anchor_gram_asymmetry": 2.9455362743306535e-13,
+        "minimum_retained_gram_eigenvalue": 6.578853209518916e-08,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017070267459961,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.001,
+      "distance_max_perturbation": 1e-09,
+      "heldout_relative_error": 6.110582952570113e-05,
+      "diagnostics": {
+        "anchor_cross_condition": 196906.28415773404,
+        "anchor_gram_asymmetry": 3.3051795521587836e-09,
+        "minimum_retained_gram_eigenvalue": 6.580166532394419e-08,
+        "negative_diagonal_count_before_projection": 0,
+        "minimum_diagonal_before_projection": 0.4017457576695229,
+        "regularized": false
+      },
+      "status": "returned"
+    },
+    {
+      "anchor_flattening": 0.001,
+      "distance_max_perturbation": 1e-06,
+      "heldout_relative_error": 0.04292758118784267,
+      "diagnostics": {
+        "anchor_cross_condition": 164771.87554746834,
+        "anchor_gram_asymmetry": 2.800756917289797e-06,
+        "minimum_retained_gram_eigenvalue": 5.7926164828807576e-08,
+        "negative_diagonal_count_before_projection": 5,
+        "minimum_diagonal_before_projection": -0.32723566209665156,
+        "regularized": false
+      },
+      "status": "returned"
+    }
+  ]
+}

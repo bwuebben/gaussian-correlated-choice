@@ -1,0 +1,244 @@
+{
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_geometry.py": "0e58f4285bcf51bfa340dc671e2bb56a79d8c2d88a8f9634af14b53240386868",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432"
+    },
+    "data_kind": "synthetic"
+  },
+  "derivatives": [
+    {
+      "quadrature_points": 17,
+      "probability_mass": 1.1496649942162847,
+      "hessian_vs_raw_grid_derivative_relative": 0.23372580112521527,
+      "solve_relative_residual": 2.7480313106425854e-16,
+      "minimum_normalized_eigenvalue": 1.2954383779965284e-16,
+      "d0_vs_jacobi_diagonal_relative": 0.30893786035212667
+    },
+    {
+      "quadrature_points": 33,
+      "probability_mass": 0.9991010328530185,
+      "hessian_vs_raw_grid_derivative_relative": 0.012837074632395,
+      "solve_relative_residual": 1.6677706329653093e-16,
+      "minimum_normalized_eigenvalue": 2.3200100058535524e-16,
+      "d0_vs_jacobi_diagonal_relative": 0.3377978532071922
+    },
+    {
+      "quadrature_points": 65,
+      "probability_mass": 0.9999999519955112,
+      "hessian_vs_raw_grid_derivative_relative": 2.079086424862082e-07,
+      "solve_relative_residual": 1.5251842590718516e-16,
+      "minimum_normalized_eigenvalue": 3.053762109010429e-16,
+      "d0_vs_jacobi_diagonal_relative": 0.3346236095041318
+    },
+    {
+      "quadrature_points": 129,
+      "probability_mass": 0.9999999999137152,
+      "hessian_vs_raw_grid_derivative_relative": 1.0000431957544916e-09,
+      "solve_relative_residual": 7.043098697318436e-17,
+      "minimum_normalized_eigenvalue": 3.0539922263906615e-16,
+      "d0_vs_jacobi_diagonal_relative": 0.33462357146302796
+    }
+  ],
+  "benchmarks": [
+    {
+      "n": 100,
+      "quadrature_rank_parameter": 16,
+      "gram_storage_bytes": 12800,
+      "reduced_seconds_including_small_matrix_formation": 2.7959002181887627e-05,
+      "cg_seconds": 0.00013916590251028538,
+      "cg_iterations": 8,
+      "reduced_relative_residual": 1.2196836379847966e-16,
+      "solution_relative_difference": 3.776039374135254e-11,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 1000,
+      "quadrature_rank_parameter": 16,
+      "gram_storage_bytes": 128000,
+      "reduced_seconds_including_small_matrix_formation": 6.937514990568161e-05,
+      "cg_seconds": 0.00017041596584022045,
+      "cg_iterations": 7,
+      "reduced_relative_residual": 1.0849678172793663e-16,
+      "solution_relative_difference": 6.81696636159076e-11,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 10000,
+      "quadrature_rank_parameter": 16,
+      "gram_storage_bytes": 1280000,
+      "reduced_seconds_including_small_matrix_formation": 0.0003409171476960182,
+      "cg_seconds": 0.0005639579612761736,
+      "cg_iterations": 7,
+      "reduced_relative_residual": 1.0048197492444151e-16,
+      "solution_relative_difference": 7.465997010389534e-13,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 100000,
+      "quadrature_rank_parameter": 16,
+      "gram_storage_bytes": 12800000,
+      "reduced_seconds_including_small_matrix_formation": 0.0035098339430987835,
+      "cg_seconds": 0.0034027500078082085,
+      "cg_iterations": 6,
+      "reduced_relative_residual": 1.1098502731780159e-16,
+      "solution_relative_difference": 6.353176021724487e-13,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 1000000,
+      "quadrature_rank_parameter": 16,
+      "gram_storage_bytes": 128000000,
+      "reduced_seconds_including_small_matrix_formation": 0.039507375098764896,
+      "cg_seconds": 0.03270937502384186,
+      "cg_iterations": 5,
+      "reduced_relative_residual": 1.0954031110274687e-16,
+      "solution_relative_difference": 9.292165705226063e-12,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 1000,
+      "quadrature_rank_parameter": 32,
+      "gram_storage_bytes": 256000,
+      "reduced_seconds_including_small_matrix_formation": 9.558303281664848e-05,
+      "cg_seconds": 0.00015954184345901012,
+      "cg_iterations": 7,
+      "reduced_relative_residual": 1.0828888632043581e-16,
+      "solution_relative_difference": 1.5412729384758713e-11,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 10000,
+      "quadrature_rank_parameter": 32,
+      "gram_storage_bytes": 2560000,
+      "reduced_seconds_including_small_matrix_formation": 0.000529083888977766,
+      "cg_seconds": 0.0004771661479026079,
+      "cg_iterations": 6,
+      "reduced_relative_residual": 1.1287551864193145e-16,
+      "solution_relative_difference": 1.024670421726134e-11,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 100000,
+      "quadrature_rank_parameter": 32,
+      "gram_storage_bytes": 25600000,
+      "reduced_seconds_including_small_matrix_formation": 0.007374541833996773,
+      "cg_seconds": 0.005232916912063956,
+      "cg_iterations": 6,
+      "reduced_relative_residual": 1.0738936828279966e-16,
+      "solution_relative_difference": 1.784684329659339e-13,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 1000,
+      "quadrature_rank_parameter": 64,
+      "gram_storage_bytes": 512000,
+      "reduced_seconds_including_small_matrix_formation": 0.00016379193402826786,
+      "cg_seconds": 0.00016733305528759956,
+      "cg_iterations": 7,
+      "reduced_relative_residual": 9.63931604200644e-17,
+      "solution_relative_difference": 9.050931172550483e-12,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 10000,
+      "quadrature_rank_parameter": 64,
+      "gram_storage_bytes": 5120000,
+      "reduced_seconds_including_small_matrix_formation": 0.0007892909925431013,
+      "cg_seconds": 0.0005439999513328075,
+      "cg_iterations": 6,
+      "reduced_relative_residual": 9.912601245884584e-17,
+      "solution_relative_difference": 3.2792403535656495e-12,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    },
+    {
+      "n": 100000,
+      "quadrature_rank_parameter": 64,
+      "gram_storage_bytes": 51200000,
+      "reduced_seconds_including_small_matrix_formation": 0.014542541932314634,
+      "cg_seconds": 0.007473666919395328,
+      "cg_iterations": 5,
+      "reduced_relative_residual": 1.1168067334978224e-16,
+      "solution_relative_difference": 2.6884647188090043e-11,
+      "data_kind": "synthetic positive Gram factor, not evaluated choice probabilities"
+    }
+  ],
+  "allocation": {
+    "mean": [
+      0.8,
+      0.65,
+      0.2,
+      0.1,
+      -0.1
+    ],
+    "covariance": [
+      [
+        1.4,
+        0.95,
+        0.0,
+        0.05,
+        -0.4
+      ],
+      [
+        0.95,
+        1.305,
+        0.05,
+        0.0925,
+        -0.395
+      ],
+      [
+        0.0,
+        0.05,
+        1.5,
+        0.9,
+        -0.3
+      ],
+      [
+        0.05,
+        0.0925,
+        0.9,
+        1.3125,
+        -0.29000000000000004
+      ],
+      [
+        -0.4,
+        -0.395,
+        -0.3,
+        -0.29000000000000004,
+        0.95
+      ]
+    ],
+    "baseline": [
+      0.31913948584027374,
+      0.22191464717400433,
+      0.17542249518913175,
+      0.12107025245655564,
+      0.1624530764133686
+    ],
+    "gaussian_bregman_projection": [
+      0.10000000002114864,
+      0.3556354390448814,
+      0.20568996821896568,
+      0.1459435862224312,
+      0.19273097771859163
+    ],
+    "kl_projection": [
+      0.1,
+      0.2933393526324394,
+      0.2318833922467425,
+      0.16003751861770896,
+      0.2147396797602103
+    ],
+    "cap": 0.1,
+    "latent_utility_tax": 0.8141640278345842,
+    "requested_orthant_absolute_tolerance": 1e-08,
+    "independent_seed_probability_gap": 1.4859726615856772e-08,
+    "scope": "Interior probability allocation with one cap; no asset-return or investment-performance claim."
+  },
+  "categorical_fisher_identity_error": 4.440892098500626e-16,
+  "status": "passed"
+}

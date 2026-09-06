@@ -1,0 +1,443 @@
+{
+  "scope": "Synthetic models and deterministic mathematical illustrations; no observed market data.",
+  "source_sha256": {
+    "companion/src/examples.py": "0b7decc33183220ca7866e1486ee75df5bd2a8a4c80ca978b01c068195d86e05",
+    "src/sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+    "output/geometry.json": "7093f90648671e54755bb32dddca3afa79d7b2b49971b8ca0102e19870e23bcf"
+  },
+  "inverse": {
+    "independent": {
+      "mean": [
+        0.3791143802918715,
+        -0.039741083008830655,
+        -0.33937329728304083
+      ],
+      "covariance": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "full_menu": [
+        0.4999999999999998,
+        0.29999999999999494,
+        0.20000000000000545
+      ],
+      "A_beats_B": 0.6164519856310807,
+      "rankings": {
+        "ABC": 0.2838965407977529,
+        "ACB": 0.2161034592022469,
+        "BAC": 0.194289987163788,
+        "BCA": 0.10571001283620697,
+        "CAB": 0.11645198563108097,
+        "CBA": 0.08354801436892446
+      },
+      "A_B_top_two_any_order": 0.47818652796154093
+    },
+    "correlated": {
+      "mean": [
+        0.4001430282982389,
+        0.20526358455558982,
+        -0.6054066128538287
+      ],
+      "covariance": [
+        [
+          1.0,
+          0.8,
+          0.0
+        ],
+        [
+          0.8,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "full_menu": [
+        0.5000000000000001,
+        0.30000000000000004,
+        0.19999999999999996
+      ],
+      "A_beats_B": 0.6210088466335928,
+      "rankings": {
+        "ABC": 0.4167556461902069,
+        "ACB": 0.08324435380979323,
+        "BAC": 0.26146747776328233,
+        "BCA": 0.03853252223671772,
+        "CAB": 0.12100884663359279,
+        "CBA": 0.07899115336640718
+      },
+      "A_B_top_two_any_order": 0.6782231239534893
+    }
+  },
+  "market": {
+    "b": 10.0,
+    "worst_loss_bound": 8.462843753216344,
+    "cost_gradient_check": 2.33246477687743e-10,
+    "rows": [
+      {
+        "q": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "prices": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        "revenue_from_origin": 0.0,
+        "worst_outcome_loss_at_q": 0.0
+      },
+      {
+        "q": [
+          10.0,
+          0.0,
+          0.0
+        ],
+        "prices": [
+          0.6337020457780796,
+          0.18314897711096015,
+          0.18314897711096015
+        ],
+        "revenue_from_origin": 4.829040656150182,
+        "worst_outcome_loss_at_q": 5.170959343849818
+      },
+      {
+        "q": [
+          20.0,
+          0.0,
+          0.0
+        ],
+        "prices": [
+          0.8657671756348324,
+          0.06711641218258381,
+          0.06711641218258381
+        ],
+        "revenue_from_origin": 12.432917287826761,
+        "worst_outcome_loss_at_q": 7.567082712173239
+      },
+      {
+        "q": [
+          20.0,
+          10.0,
+          0.0
+        ],
+        "prices": [
+          0.7287510153004692,
+          0.2240983047804425,
+          0.04715067991908845
+        ],
+        "revenue_from_origin": 13.784841238826175,
+        "worst_outcome_loss_at_q": 6.215158761173825
+      }
+    ]
+  },
+  "providers": {
+    "mean": [
+      0.8,
+      0.65,
+      0.2,
+      0.1,
+      -0.1
+    ],
+    "covariance": [
+      [
+        1.4,
+        0.95,
+        0.0,
+        0.05,
+        -0.4
+      ],
+      [
+        0.95,
+        1.305,
+        0.05,
+        0.0925,
+        -0.395
+      ],
+      [
+        0.0,
+        0.05,
+        1.5,
+        0.9,
+        -0.3
+      ],
+      [
+        0.05,
+        0.0925,
+        0.9,
+        1.3125,
+        -0.29000000000000004
+      ],
+      [
+        -0.4,
+        -0.395,
+        -0.3,
+        -0.29000000000000004,
+        0.95
+      ]
+    ],
+    "baseline": [
+      0.3191394870583843,
+      0.2219146681535544,
+      0.17542249991302541,
+      0.1210702536269156,
+      0.1624530720958516
+    ],
+    "delete_A": [
+      0.42476841687545,
+      0.21625567938519694,
+      0.15516027258818726,
+      0.2038156120871683
+    ],
+    "renormalize": [
+      0.32593264543244815,
+      0.2576482210065662,
+      0.17781946716786245,
+      0.23859963826361905
+    ],
+    "second_seed_gap": 8.626212660844956e-09,
+    "inquiry_pairs": [
+      {
+        "pair": "AB",
+        "expected_best_utility": 1.0879287866400877,
+        "net_of_two_inquiries": 0.8479287866400878
+      },
+      {
+        "pair": "AC",
+        "expected_best_utility": 1.2211114127446798,
+        "net_of_two_inquiries": 0.9811114127446798
+      },
+      {
+        "pair": "AD",
+        "expected_best_utility": 1.1543629691166353,
+        "net_of_two_inquiries": 0.9143629691166353
+      },
+      {
+        "pair": "AE",
+        "expected_best_utility": 1.1471858815418,
+        "net_of_two_inquiries": 0.9071858815417999
+      },
+      {
+        "pair": "BC",
+        "expected_best_utility": 1.1055432843128248,
+        "net_of_two_inquiries": 0.8655432843128248
+      },
+      {
+        "pair": "BD",
+        "expected_best_utility": 1.0355015328202741,
+        "net_of_two_inquiries": 0.7955015328202741
+      },
+      {
+        "pair": "BE",
+        "expected_best_utility": 1.0344792743450482,
+        "net_of_two_inquiries": 0.7944792743450482
+      },
+      {
+        "pair": "CD",
+        "expected_best_utility": 0.5534086563013187,
+        "net_of_two_inquiries": 0.31340865630131876
+      },
+      {
+        "pair": "CE",
+        "expected_best_utility": 0.7569770527293203,
+        "net_of_two_inquiries": 0.5169770527293203
+      },
+      {
+        "pair": "DE",
+        "expected_best_utility": 0.6773322762974366,
+        "net_of_two_inquiries": 0.43733227629743665
+      }
+    ],
+    "inquiry_singles": [
+      {
+        "provider": "A",
+        "net_of_one_inquiry": 0.68
+      },
+      {
+        "provider": "B",
+        "net_of_one_inquiry": 0.53
+      },
+      {
+        "provider": "C",
+        "net_of_one_inquiry": 0.08000000000000002
+      },
+      {
+        "provider": "D",
+        "net_of_one_inquiry": -0.01999999999999999
+      },
+      {
+        "provider": "E",
+        "net_of_one_inquiry": -0.22
+      }
+    ],
+    "best_pair": {
+      "pair": "AC",
+      "expected_best_utility": 1.2211114127446798,
+      "net_of_two_inquiries": 0.9811114127446798
+    },
+    "allocation": {
+      "mean": [
+        0.8,
+        0.65,
+        0.2,
+        0.1,
+        -0.1
+      ],
+      "covariance": [
+        [
+          1.4,
+          0.95,
+          0.0,
+          0.05,
+          -0.4
+        ],
+        [
+          0.95,
+          1.305,
+          0.05,
+          0.0925,
+          -0.395
+        ],
+        [
+          0.0,
+          0.05,
+          1.5,
+          0.9,
+          -0.3
+        ],
+        [
+          0.05,
+          0.0925,
+          0.9,
+          1.3125,
+          -0.29000000000000004
+        ],
+        [
+          -0.4,
+          -0.395,
+          -0.3,
+          -0.29000000000000004,
+          0.95
+        ]
+      ],
+      "baseline": [
+        0.31913948584027374,
+        0.22191464717400433,
+        0.17542249518913175,
+        0.12107025245655564,
+        0.1624530764133686
+      ],
+      "gaussian_bregman_projection": [
+        0.10000000002114864,
+        0.3556354390448814,
+        0.20568996821896568,
+        0.1459435862224312,
+        0.19273097771859163
+      ],
+      "kl_projection": [
+        0.1,
+        0.2933393526324394,
+        0.2318833922467425,
+        0.16003751861770896,
+        0.2147396797602103
+      ],
+      "cap": 0.1,
+      "latent_utility_tax": 0.8141640278345842,
+      "requested_orthant_absolute_tolerance": 1e-08,
+      "independent_seed_probability_gap": 1.4859726615856772e-08,
+      "scope": "Interior probability allocation with one cap; no asset-return or investment-performance claim."
+    }
+  },
+  "anchors": {
+    "v": [
+      0.0,
+      1.0,
+      2.0,
+      4.0,
+      -1.0,
+      2.0,
+      3.0,
+      -2.0
+    ],
+    "d": [
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "mu": [
+      0.4,
+      0.3,
+      0.2,
+      0.1,
+      0.0,
+      -0.1,
+      -0.2,
+      -0.3
+    ],
+    "pairs": 27,
+    "q_AB_minus1_plus1": [
+      0.23121636322523814,
+      0.8154462047812188
+    ],
+    "gram_error": 8.881784197001252e-15,
+    "diagonal_error": 8.548717289613705e-15,
+    "diagnostics": {
+      "anchor_cross_condition": 1.0,
+      "anchor_gram_asymmetry": 0.0,
+      "minimum_retained_gram_eigenvalue": 0.9999999999999991,
+      "negative_diagonal_count_before_projection": 0,
+      "minimum_diagonal_before_projection": 0.20000000000000195,
+      "regularized": false
+    }
+  },
+  "portfolio_counterexample": {
+    "covariance1": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "covariance2": [
+      [
+        4.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ]
+    ],
+    "contrast_variance": 2.0,
+    "minimum_variance_weight_A": [
+      0.5,
+      0.0
+    ]
+  },
+  "status": "passed"
+}

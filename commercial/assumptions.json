@@ -1,0 +1,77 @@
+{
+  "classification": "Illustrative planning assumptions; not observations or forecasts",
+  "currency": "USD",
+  "merchant": {
+    "eligible_annual_baseline_contribution": 10000000,
+    "uplift_rates": [0.01, 0.03, 0.05],
+    "performance_fee_rate": 0.15,
+    "annual_direct_cost_per_customer": 12000,
+    "annual_fixed_operating_cost": 600000,
+    "target_operating_profit": 1000000,
+    "customer_counts": [10, 20, 40],
+    "contribution_margin": 0.25,
+    "eligible_sales_fraction": 0.10,
+    "acquisition_and_onboarding_cash": 25000,
+    "recurring_revenue_targets": [10000000, 100000000],
+    "offer_scenarios": [
+      {"discount_A": 0, "p_A": 0.04, "p_B": 0.06, "p_outside": 0.90},
+      {"discount_A": 5, "p_A": 0.065, "p_B": 0.052, "p_outside": 0.883},
+      {"discount_A": 10, "p_A": 0.09, "p_B": 0.03, "p_outside": 0.88}
+    ],
+    "contribution_A_before_discount": 60,
+    "contribution_B": 100
+  },
+  "trading": {
+    "annual_fixed_operating_cost": 300000,
+    "target_operating_profit": 1000000,
+    "net_edge_per_completed_unit": [0.002, 0.005, 0.01],
+    "participation_rate": 0.01,
+    "annual_turns": 100,
+    "cash_tied_per_unit": 0.50,
+    "example_yes_ask": 0.49,
+    "example_no_ask": 0.49,
+    "illustrative_taker_coefficient": 0.07,
+    "example_failure_probability": 0.05,
+    "example_complete_gain": 0.006,
+    "example_failed_hedge_loss": 0.15
+  },
+  "power": {
+    "two_sided_alpha": 0.05,
+    "power": 0.80,
+    "session_profit_sd": 26,
+    "absolute_effects": [0.10, 0.25, 0.375],
+    "independent_units": true
+  },
+  "routing": {
+    "first_attempt_cost": 0.20,
+    "second_attempt_cost": 0.60,
+    "first_failure_probability": 0.10,
+    "second_marginal_failure_probability": 0.10,
+    "joint_failure_probabilities": [0.01, 0.09],
+    "terminal_remediation_cost": 30,
+    "annual_tasks_per_customer": 1000000,
+    "verified_saving_per_task": 0.30,
+    "value_share": 0.20
+  },
+  "reliability": {
+    "one_sided_alpha": 0.05,
+    "failure_probability_targets": [0.008, 0.001]
+  },
+  "anchor_examples": {"n": [1000, 1000000], "r": 3, "trials_per_level": 100},
+  "institutional_inquiry": {
+    "annual_routed_notional": 50000000000,
+    "execution_improvement_bps": 0.20,
+    "fee_share": 0.15
+  },
+  "milestone_tranches": [20000, 40000, 60000, 80000],
+  "optional_trading_research_budget": 20000,
+  "pilot_fee_range": [10000, 25000],
+  "six_month_budget": {
+    "founder_draw": 60000,
+    "engineering_and_data": 80000,
+    "experimentation_and_compute": 15000,
+    "customer_integration_and_domain_support": 20000,
+    "contracts_and_security": 15000,
+    "contingency": 10000
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "configuration": {
+    "kind": "noisy_pure_factor",
+    "n": 200,
+    "rank": 10,
+    "N": 1000,
+    "c": 2,
+    "seed": 81000
+  },
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_supplement.py": "c72c7ad425beddf36c58022a65a5b2dc8d73dc1fd31873627bd4ba96e8ae34f3",
+      "run_finite.py": "c2bb466dfff96180e39b20e60b2d863d1b3afb32ce4901e260698efdfe339524",
+      "estimation.py": "d5ffde07a608559ad17b932e8d2b0475d12e44460d548e6b70ff939b953434c9",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432"
+    },
+    "data_kind": "synthetic"
+  },
+  "observed_pairs": 19900,
+  "pair_variance_relative_error": 0.08098126688984247,
+  "covariance_relative_error": 0.06198922899773161,
+  "diagnostics": {
+    "optimizer_success": true,
+    "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "iterations": 48,
+    "scaled_loss": 0.0011263007267110058
+  },
+  "pair_diagnostics": {
+    "bounded_fit_count": 0,
+    "fallback_optimization_count": 152,
+    "fallback_failure_count": 0,
+    "intercept_bounds": [
+      -12,
+      12
+    ],
+    "slope_bounds": [
+      0.05,
+      10
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "configuration": {
+    "kind": "random",
+    "n": 1000,
+    "rank": 10,
+    "c": 0.5,
+    "seed": 32002
+  },
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_sparse.py": "56912ce7057e27dea3be930d4e9552eb1e49b74b13473833e24b8a68b63dff6f",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe"
+    },
+    "data_kind": "synthetic"
+  },
+  "observed_pairs": 34539,
+  "total_possible_pairs": 499500,
+  "heldout_pairs_evaluated": 20000,
+  "observed_relative_error": 5.013026079903775e-07,
+  "heldout_relative_error": 1.0934650187183993e-06,
+  "covariance_relative_error": 3.4888059454004397e-06,
+  "diagonal_relative_error": null,
+  "seconds": 0.436215290799737,
+  "diagnostics": {
+    "optimizer_success": true,
+    "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "iterations": 156,
+    "scaled_loss": 1.5157995060868398e-13
+  }
+}

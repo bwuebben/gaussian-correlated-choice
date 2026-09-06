@@ -1,0 +1,35 @@
+{
+  "configuration": {
+    "kind": "random",
+    "n": 200,
+    "rank": 2,
+    "c": 8.0,
+    "seed": 32001
+  },
+  "provenance": {
+    "python": "3.14.6",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "source_sha256": {
+      "run_sparse.py": "56912ce7057e27dea3be930d4e9552eb1e49b74b13473833e24b8a68b63dff6f",
+      "sparse_recovery.py": "2734a427567564e62020b3be7e157ae730e8fbf5092ca4dd20418d27e63b90a8",
+      "experiment_utils.py": "2ff988c7468cd379fc11718c159109c69be0160b83819becb638777df8554432",
+      "choice_model.py": "a6cc386b01c9f581fd686cc8eb50025a0140b063ae682ab3ccfea7cba22ed9fe"
+    },
+    "data_kind": "synthetic"
+  },
+  "observed_pairs": 16955,
+  "total_possible_pairs": 19900,
+  "heldout_pairs_evaluated": 2945,
+  "observed_relative_error": 2.2993514954404863e-08,
+  "heldout_relative_error": 2.42282858516929e-08,
+  "covariance_relative_error": 2.985413811085534e-08,
+  "diagonal_relative_error": null,
+  "seconds": 0.01722729206085205,
+  "diagnostics": {
+    "optimizer_success": true,
+    "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "iterations": 34,
+    "scaled_loss": 5.440561335832959e-16
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "cotton2021": {
+    "url": "https://raw.githubusercontent.com/microprediction/home/main/papers/Horse_Race_Problem.pdf",
+    "sha256": "2f30b3c798f3fb3ae4d99f52f033cc7c144391882fc6d025d3ffa40163c1d7e2"
+  },
+  "cotton_roar": {
+    "url": "https://raw.githubusercontent.com/microprediction/home/main/papers/self_organizing_supply_chains.pdf",
+    "sha256": "0e983623af3251c138079b7719f24556449e71bed1f7ba4511234c29dabdc128"
+  },
+  "cotton_subset": {
+    "url": "https://raw.githubusercontent.com/microprediction/home/main/workingpapers/Group_Selection_Probabilities_and_Rankings.pdf",
+    "sha256": "1d274a24efd67583c5f89bb4af39b9853886f51b3eb9f0227e6dcdf537e69105"
+  },
+  "cotton_platform": {
+    "url": "https://raw.githubusercontent.com/microprediction/home/main/workingpapers/a_platform_for_assessing_and_combining.pdf",
+    "sha256": "3a866e767b0ce3fa5c87473e46e4685e73ec1a35909e9ab98acb3d58857042a3"
+  }
+}

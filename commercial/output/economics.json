@@ -1,0 +1,205 @@
+{
+  "classification": "Illustrative planning assumptions; not observations or forecasts",
+  "offers": [
+    {
+      "discount_A": 0,
+      "p_A": 0.04,
+      "p_B": 0.06,
+      "p_outside": 0.9,
+      "conversion": 0.1,
+      "contribution_per_session": 8.4,
+      "variance": 673.44,
+      "increment_per_session": 0.0
+    },
+    {
+      "discount_A": 5,
+      "p_A": 0.065,
+      "p_B": 0.052,
+      "p_outside": 0.883,
+      "conversion": 0.11699999999999999,
+      "contribution_per_session": 8.775,
+      "variance": 639.624375,
+      "increment_per_session": 0.375
+    },
+    {
+      "discount_A": 10,
+      "p_A": 0.09,
+      "p_B": 0.03,
+      "p_outside": 0.88,
+      "conversion": 0.12,
+      "contribution_per_session": 7.5,
+      "variance": 468.75,
+      "increment_per_session": -0.9000000000000004
+    }
+  ],
+  "merchants": [
+    {
+      "uplift": 0.01,
+      "revenue_per_customer": 15000.0,
+      "direct_contribution_per_customer": 3000.0,
+      "customers_for_break_even": 200,
+      "customers_for_target_profit": 534,
+      "scales": [
+        {
+          "customers": 10,
+          "revenue": 150000.0,
+          "operating_profit": -570000.0
+        },
+        {
+          "customers": 20,
+          "revenue": 300000.0,
+          "operating_profit": -540000.0
+        },
+        {
+          "customers": 40,
+          "revenue": 600000.0,
+          "operating_profit": -480000.0
+        }
+      ]
+    },
+    {
+      "uplift": 0.03,
+      "revenue_per_customer": 45000.0,
+      "direct_contribution_per_customer": 33000.0,
+      "customers_for_break_even": 19,
+      "customers_for_target_profit": 49,
+      "scales": [
+        {
+          "customers": 10,
+          "revenue": 450000.0,
+          "operating_profit": -270000.0
+        },
+        {
+          "customers": 20,
+          "revenue": 900000.0,
+          "operating_profit": 60000.0
+        },
+        {
+          "customers": 40,
+          "revenue": 1800000.0,
+          "operating_profit": 720000.0
+        }
+      ]
+    },
+    {
+      "uplift": 0.05,
+      "revenue_per_customer": 75000.0,
+      "direct_contribution_per_customer": 63000.0,
+      "customers_for_break_even": 10,
+      "customers_for_target_profit": 26,
+      "scales": [
+        {
+          "customers": 10,
+          "revenue": 750000.0,
+          "operating_profit": 30000.0
+        },
+        {
+          "customers": 20,
+          "revenue": 1500000.0,
+          "operating_profit": 660000.0
+        },
+        {
+          "customers": 40,
+          "revenue": 3000000.0,
+          "operating_profit": 1920000.0
+        }
+      ]
+    }
+  ],
+  "trading": [
+    {
+      "net_edge": 0.002,
+      "required_completed_units": 650000000.0,
+      "required_addressable_units": 65000000000.0,
+      "illustrative_cash_capacity": 3250000.0
+    },
+    {
+      "net_edge": 0.005,
+      "required_completed_units": 260000000.0,
+      "required_addressable_units": 26000000000.0,
+      "illustrative_cash_capacity": 1300000.0
+    },
+    {
+      "net_edge": 0.01,
+      "required_completed_units": 130000000.0,
+      "required_addressable_units": 13000000000.0,
+      "illustrative_cash_capacity": 650000.0
+    }
+  ],
+  "fee_example": {
+    "gross_profit": 0.020000000000000018,
+    "unrounded_fees": 0.034986,
+    "profit_after_unrounded_fees": -0.014985999999999985
+  },
+  "execution_example_expected_profit": -0.0017999999999999995,
+  "power": [
+    {
+      "effect": 0.1,
+      "per_arm": 1061169
+    },
+    {
+      "effect": 0.25,
+      "per_arm": 169787
+    },
+    {
+      "effect": 0.375,
+      "per_arm": 75461
+    }
+  ],
+  "routing": [
+    {
+      "joint_failure": 0.01,
+      "fallback_conditional_failure": 0.09999999999999999,
+      "expected_total_cost": 0.56
+    },
+    {
+      "joint_failure": 0.09,
+      "fallback_conditional_failure": 0.8999999999999999,
+      "expected_total_cost": 2.96
+    }
+  ],
+  "routing_annual_revenue_per_customer": 60000.0,
+  "reliability": [
+    {
+      "target": 0.008,
+      "zero_failure_trials": 373
+    },
+    {
+      "target": 0.001,
+      "zero_failure_trials": 2995
+    }
+  ],
+  "anchors": [
+    {
+      "n": 1000,
+      "pairs": 11922,
+      "trials": 2384400
+    },
+    {
+      "n": 1000000,
+      "pairs": 11999922,
+      "trials": 2399984400
+    }
+  ],
+  "six_month_budget": 200000,
+  "implication_payoffs": [
+    1,
+    2,
+    1
+  ],
+  "narrative_calculations": {
+    "eligible_annual_sales": 40000000.0,
+    "total_annual_sales_if_restricted": 400000000.0,
+    "acquisition_payback_months": 9.090909090909092,
+    "accounts_for_revenue_targets": {
+      "10000000": 223,
+      "100000000": 2223
+    },
+    "institutional_inquiry_savings": 1000000.0,
+    "institutional_inquiry_fee": 150000.0
+  },
+  "provenance": {
+    "assumptions_sha256": "16268b4b341a3678c727383a88605ff5a525f76687b1c1cd3d0bcd7657e27498",
+    "source_sha256": "a4497fa4d6ca934cda0e03e937ceef370afc8dfa77470a8ec1b8a45e3b86d8e9"
+  }
+}
