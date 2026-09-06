@@ -10,12 +10,15 @@ and the results used to produce their tables and figures.
 | Paper | Contribution | Files |
 | --- | --- | --- |
 | **Gaussian Choice from Sparse Pairwise Interventions** | Constructive identification from three groups of reference alternatives, local stability and sampling bounds, and synthetic experiments. | [PDF](paper/gaussian-choice-identification.pdf) · [LaTeX](paper/main.tex) |
-| **From Winning Probabilities to Decisions: Prediction Markets, Agentic Commerce, and Portfolio Allocation** | Worked applications of contest inversion to ranked contracts, provider inquiry and substitution, and constrained allocation; identifies the limits of recovering portfolio risk from choices. | [PDF](companion/winning-probabilities-to-decisions.pdf) · [LaTeX](companion/main.tex) |
+| **From Winning Probabilities to Decisions: Prediction Markets, Agentic Commerce, and Portfolio Allocation** | Explains dual choice geometry, effective resistance, spectral conditioning and three-group reconstruction, with worked applications to markets, provider substitution and allocation. | [PDF](companion/winning-probabilities-to-decisions.pdf) · [LaTeX](companion/main.tex) |
 | **Commercial Value from Correlated Choice Models: Offer Optimization, Event Trading, and AI Service Routing** | Merchant experiments, event-contract trading research, and verified service routing, with unit economics, experimental requirements, and a staged validation plan. | [PDF](commercial/commercial-value-correlated-choice.pdf) · [LaTeX](commercial/main.tex) |
 
 The mathematics paper is the starting point for the identification results.
-The applications companion explains their uses and limitations through worked
-examples. The commercial paper develops proposals that require further data
+The 20-page applications companion explains their uses and limitations through
+worked examples. Its geometry section connects the surplus Hessian and its
+inverse on the probability simplex to the Fisher–Rao benchmark, effective
+resistance, market price response and provider substitution. These are
+expository connections to classical mathematics. The commercial paper develops proposals that require further data
 and prospective evaluation.
 
 ## Mathematical scope and evidence
@@ -57,6 +60,9 @@ the mathematics paper. The [companion examples](companion/output/examples.json)
 and [commercial calculations](commercial/output/economics.json) record their
 inputs and source hashes. The commercial assumptions are explicit in
 [assumptions.json](commercial/assumptions.json).
+The companion's [geometry calculation](companion/output/geometry.json) records
+the full substitution matrices, spectra, resistances and numerical checks for
+two Gaussian models with identical winner probabilities.
 
 ## Build the PDFs
 
@@ -70,6 +76,8 @@ the sources, then run:
 This builds all three papers using the included tables and figures. Each PDF
 is written to the descriptive filename linked above. Temporary TeX files go
 into an ignored `build/` directory inside each manuscript directory.
+Use `./build.sh companion` to rebuild only the applications companion;
+`paper` and `commercial` select the other individual manuscripts.
 An individual source also builds with `latexmk -pdf main.tex` from its directory.
 
 ## Reproduce the calculations
@@ -116,6 +124,11 @@ standard library:
 ```bash
 python3 commercial/src/economics.py
 ```
+
+The companion geometry table can be regenerated from the included example
+inputs with `.venv/bin/python companion/src/geometry.py`. It checks Gaussian
+tie weights against numerical probability derivatives and verifies the inverse,
+market-maker and Gumbel scaling identities and the local Bregman expansion.
 
 Changing commercial assumptions requires updating the corresponding discussion
 as well as regenerating the tables. External interfaces and fee schedules cited

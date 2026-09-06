@@ -25,3 +25,27 @@ and is not treated as verified authorship or a dated publication.
 All table and figure values in the companion are our synthetic calculations,
 not numbers copied from Cotton's performance benchmarks. The existing allocation
 example comes from the local mathematics manuscript and its saved source data.
+
+## Geometry additions, checked 6 September 2026
+
+| Source | Use and boundary |
+| --- | --- |
+| [Fosgerau and de Palma, *Generalized Entropy Models*](https://mpra.ub.uni-muenchen.de/70249/1/MPRA_paper_70249.pdf), Theorem 4 | Convex conjugacy of expected maximum utility on the simplex. This is background, not a new duality result. |
+| [Müller, Nesterov and Shikhman, *Discrete Choice Prox-Functions on the Simplex*](https://arxiv.org/html/1909.05591), Section 2 | Surplus gradient, conjugate, signed cross-Hessian and zero row sums under the stated full-support assumptions. |
+| [Cotton (2026)](https://arxiv.org/html/2609.01133v1), Section 5 and Proposition 1 | Tie-face boundary flux and structured probability derivatives. Cotton explicitly acknowledges the earlier cross-Hessian structure; his minimum-performance Jacobian has the opposite sign from the maximum-utility Hessian used here. |
+| [Nielsen, *An Elementary Introduction to Information Geometry*](https://arxiv.org/abs/1808.08271), Entropy 22(10), 1100 (2020) | Classical Hessian dual coordinates, Bregman geometry and the categorical Fisher benchmark. The companion derives the scale factor and tangent-space quadratic form explicitly. |
+| [Spielman and Srivastava, *Graph Sparsification by Effective Resistances*](https://arxiv.org/abs/0803.0929), Section 2 | Weighted graph Laplacian pseudoinverse and electrical resistance. No claim to new resistance theory or a graph-sparsification algorithm is made. |
+| [Fiedler, *Algebraic Connectivity of Graphs*](https://dml.cz/handle/10338.dmlcz/101168), Section 1 | The classical second-eigenvalue notion. The companion uses its weighted Rayleigh-quotient analogue and distinguishes an absolute small gap from evidence of a relative bottleneck. |
+| [Mertikopoulos and Sandholm, *Riemannian Game Dynamics*](https://users.ssc.wisc.edu/~whs/research/2018_JET.pdf), Sections 4 and 7 | Prior use of Hessian metrics and Bregman divergences on the simplex in economic dynamics; establishes adjacent geometric precedent, not an empirical routing result. |
+
+The additions synthesize established mathematics for the stated contest model.
+The Gaussian Hessian metric is not generally the Fisher metric of observed
+categorical winners. The three-group explanation establishes sufficiency for
+the given reconstruction, not impossibility of every two-group design.
+
+`src/geometry.py` computes the additional table from the two existing synthetic
+Gaussian inversions. Its Gaussian-conditioning formula is checked against
+independent numerical derivatives of winner probabilities. It also checks
+inverse and market scaling, the local Bregman expansion, the Gumbel scale
+factor, and a nonsymmetric matrix example of the three-group identity.
+Inputs, full matrices, spectra and numerical errors are in `output/geometry.json`.

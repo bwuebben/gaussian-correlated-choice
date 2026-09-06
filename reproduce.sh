@@ -27,5 +27,6 @@ if [[ "$MODE" == --full ]]; then
 fi
 "$PYTHON_BIN" src/build_results.py
 "$PYTHON_BIN" companion/src/examples.py
+"$PYTHON_BIN" companion/src/geometry.py
 "$PYTHON_BIN" commercial/src/economics.py
 ./build.sh

@@ -20,10 +20,10 @@
 \author{Bernd Johannes Wuebben}
 \subjclass[2020]{62P20 (primary); 62H25, 91G10 (secondary)}
 \keywords{Contest inversion, prediction markets, microprediction, random utility, provider selection, probability allocation}
-\date{September 5, 2026}
+\date{September 6, 2026}
 \begin{document}
 \begin{abstract}
-Winning probabilities summarize competition but do not specify how alternatives perform together. Peter Cotton's work on contest inversion constructs latent performance models consistent with such probabilities, allowing a fitted model to answer questions about rankings, withdrawals, and subsets of competitors. We explain the problem and its computational solution in the context of Cotton's broader work on microprediction: supplying repeated quantitative decisions with forecasts produced by autonomous services. Worked examples address ranked prediction-market contracts, a Gaussian cost-function market maker, the selection of service providers under inquiry costs, and constrained allocation across correlated alternatives. We then explain a complementary identification result: calibrated binary interventions recover the joint Gaussian law of performance differences from a number of designed pairs proportional to the number of alternatives times the factor dimension. Its motivating interventions are alternative-specific monetary bonuses with a common additive utility effect and direct numerical score offsets in algorithmic selection. The examples separate inversion under a chosen covariance from learning that covariance, and distinguish probability allocation from investment risk. Two Gaussian return models with identical pairwise choice laws have different minimum-variance portfolios. All numerical examples are synthetic and reproducible; the proposed applications require their own calibration and validation.
+Winning probabilities summarize competition but do not specify how alternatives perform together. Peter Cotton's work on contest inversion constructs latent performance models consistent with such probabilities, allowing a fitted model to answer questions about rankings, withdrawals, and subsets of competitors. We explain this framework in the context of microprediction and develop worked applications to prediction markets, provider inquiry, and constrained allocation. The derivatives of expected best performance define a weighted substitution graph. Its inverse Laplacian measures local probability adjustments, recovers categorical Fisher--Rao geometry for unit-scale Gumbel shocks, and connects classical resistance and spectral quantities to market price response and provider substitution. We also explain why rectangular differences and three groups of reference alternatives identify a Gaussian factor model from calibrated binary interventions. These geometric interpretations complement the identification result without changing its experimental assumptions. The examples distinguish a chosen covariance from an identified covariance, and probability allocation from investment risk. Two Gaussian return models with identical pairwise choice laws have different minimum-variance portfolios. All numerical examples are synthetic and reproducible; the proposed applications require their own calibration and validation.
 \end{abstract}
 \maketitle
 \enlargethispage{2pt}
@@ -53,6 +53,16 @@ Identification & Calibrated responses on designed pairs and structural assumptio
 Cotton's numerical work addresses the first two operations at useful scales. Our mathematical extension addresses the third. Successful inversion by itself supplies no evidence that the assumed dependence structure is correct.
 
 The natural applications differ across these operations. For experimental identification, we emphasize controlled human choice with alternative-specific monetary incentives and algorithmic choice with direct score offsets. Both provide an observable treatment whose utility effect can be specified, subject to the assumptions below. Prediction markets and portfolio allocation illustrate uses and limits of a specified contest model; they do not by themselves provide the calibrated intervention needed to learn its covariance.
+
+The derivatives used in inversion also describe local substitution. The joint
+performance law determines winner probabilities and the frequency of close
+finishes; these in turn determine how relative scores must change to produce
+a specified small probability adjustment. We connect this calculation to
+classical convex duality, information geometry, and electrical networks.
+The resulting interpretation links the market-making and provider-selection
+examples, while distinguishing the geometry of latent factors from the geometry
+of choice responses. This is an explanatory synthesis, rather than a claim of
+new general results in information geometry or spectral graph theory.
 
 \section{Microprediction and the problem of repeated decisions}
 
@@ -107,6 +117,7 @@ $\Sigma=VV^T+\diag(d)$, where row $i$ of $V$ is $v_i^T$. Conditional on $Z$, the
 
 Cotton's 2026 preprint develops shared computations for such structured dependence, together with derivatives and inversion \cite{cotton2026}. The work includes factor, block, and hierarchical structures. At fixed numerical integration budgets, reusing the common field avoids repeating the entire forward calculation for each entrant. Accuracy still depends on those budgets and the chosen covariance representation. Our examples use independent numerical integrations of small contests, rather than a replication of that paper's large-scale software benchmarks.
 
+\subsection{Expected surplus and convex inversion}
 For Gaussian noise, a useful organizing function is the expected best performance
 \begin{equation}\label{eq:surplus}
  S(\mu)=\E\max_i(\mu_i+\varepsilon_i).
@@ -117,10 +128,168 @@ It is convex, satisfies $S(\mu+c\one)=S(\mu)+c$, and has gradient $\nabla S=p$. 
 \end{equation}
 The first-order condition is $p=\pi$: both probability vectors sum to one, so their difference cannot be a nonzero constant vector. Positive Gaussian density on the contrast space makes the objective strictly convex on this normalized space. For an interior $\pi$, coercivity follows from $S(\mu)\geq\max_i\mu_i$ for centered shocks and the growth of $\max_i\mu_i-\pi^T\mu$ along centered directions. These properties explain uniqueness and existence independently of a particular inversion algorithm. The surplus and its conjugate are standard objects in random utility theory \cite{fosgerau2016,muller2019}.
 
+\subsection{The dual geometry of choice and substitution}\label{subsec:geometry}
+Fix the full menu and a positive-definite Gaussian covariance, as in the
+examples above. Normalize utilities to the contrast space
+$\mathcal T=\one^\perp=\{x:\one^Tx=0\}$. Probabilities lie in
+$\Delta_n^\circ=\{p_i>0:\one^Tp=1\}$, whose tangent space is also $\mathcal T$.
+These are two local coordinate systems for the fitted contest: relative
+utilities $\mu$ and interior choice probabilities $p=\nabla S(\mu)$.
+
+\subsubsection{The substitution Laplacian}
+Let $f_{ij}$ be the joint density of $(U_i,U_j)$ at the current mean vector.
+For $i\ne j$, define the weight
+\begin{equation}\label{eq:tie_weights}
+ w_{ij}(\mu)=\int_{\R}f_{ij}(t,t)
+ \Prob\{U_k<t\text{ for all }k\ne i,j\mid U_i=U_j=t\}\,dt.
+\end{equation}
+This is a density of ties for first place: the two alternatives must meet
+at the same performance and exceed the remaining field. The tie event itself
+has probability zero. Differentiating the surplus gives the symmetric matrix
+\begin{equation}\label{eq:laplacian}
+ L(\mu)=\nabla^2S(\mu),\qquad
+ L_{ij}=-w_{ij}\ (i\ne j),\qquad L_{ii}=\sum_{j\ne i}w_{ij},
+ \qquad dp=L\,d\mu.
+\end{equation}
+The cross-derivative formula and Laplacian structure are established in
+random utility theory \cite{muller2019}; Cotton gives a boundary-flux
+interpretation and structured computations \cite{cotton2026}. His
+minimum-performance convention reverses the sign of the probability Jacobian.
+Here increasing a rival's utility lowers one's winning probability, giving
+the negative off-diagonal entries in \eqref{eq:laplacian}.
+
+Regard alternatives as vertices joined by conductances $w_{ij}$. This is the
+weighted substitution graph, also called the photo-finish graph. Common
+utility shifts explain $L\one=0$, and
+$h^TLh=\sum_{i<j}w_{ij}(h_i-h_j)^2\geq0$.
+Positive-definite Gaussian covariance gives positive density everywhere, so
+every weight in \eqref{eq:tie_weights} is positive. More generally, connectedness
+of the weighted graph makes $L$ positive definite on $\mathcal T$. Positive pairwise
+contrast variances alone need not give this conclusion for a singular
+Gaussian law.
+
+\subsubsection{Dual coordinates and the local metric}
+Define the convex conjugate on the simplex by
+\begin{equation}\label{eq:conjugate}
+ F(p)=\sup_{\mu\in\R^n}\{p^T\mu-S(\mu)\},\qquad
+ \Delta_n=\{p\geq0:\one^Tp=1\}.
+\end{equation}
+For $p\in\Delta_n^\circ$, let $\mu(p)\in\mathcal T$ be the unique centered inverse,
+and write $L_p=L(\mu(p))$. Gradients and Hessians of $F$ are taken on the
+affine simplex, using its Euclidean tangent space $\mathcal T$. Convex duality gives
+$\nabla_{\mathcal T}F(p)=\mu(p)$. Differentiating $p=\nabla S(\mu(p))$ then yields
+\begin{equation}\label{eq:dual_metric}
+ \nabla_{\mathcal T}^2F(p)=L_p^\dagger\big|_{\mathcal T},\qquad
+ d\mu=L_p^\dagger dp,\qquad
+ ds^2=dp^TL_p^\dagger dp=d\mu^TL_p\,d\mu.
+\end{equation}
+The dagger denotes the Moore--Penrose pseudoinverse, which is zero in the
+common-shift direction. The quadratic form is a local Hessian metric: it is
+positive for every nonzero tangent displacement. It pairs the probability
+movement with the relative-utility adjustment that produces it, since
+$ds^2=dp^Td\mu$. It is not the unweighted squared size of that adjustment.
+Surplus conjugacy is standard \cite{fosgerau2016,muller2019}, as is the
+description of dual coordinates by inverse Hessians \cite{nielsen2020}.
+Related Hessian metrics on the simplex also appear in game dynamics
+\cite{mertikopoulos2018}.
+
+\subsubsection{The Gumbel benchmark and Fisher--Rao geometry}
+For independent Gumbel shocks of common scale $\tau>0$,
+\begin{equation}\label{eq:gumbel_metric}
+ p_i=\frac{e^{\mu_i/\tau}}{\sum_j e^{\mu_j/\tau}},\qquad
+ L=\frac1\tau\bigl(\diag(p)-pp^T\bigr),\qquad
+ v^TL^\dagger v=\tau\sum_i\frac{v_i^2}{p_i}\quad(v\in\mathcal T).
+\end{equation}
+To see the last identity, $x=\tau\diag(p)^{-1}v$ solves $Lx=v$;
+subtracting its mean gives $L^\dagger v$ and does not change $v^Tx$.
+At unit scale the metric is therefore
+$ds^2=\sum_i dp_i^2/p_i$, the categorical Fisher--Rao quadratic form
+\cite{nielsen2020}. Indeed the score in direction $v$ for observing category
+$i$ is $v_i/p_i$, whose squared expectation is $\sum_i v_i^2/p_i$.
+The shock scale multiplies this form by $\tau$.
+
+Thus unit-scale Gumbel choice gives the familiar categorical information
+geometry. A Gaussian contest can give different $L_p$ at the same $p$, because
+its tie densities also depend on the specified covariance. Its dual Hessian
+metric should not in general be called the Fisher information of the observed
+winner distribution; that distribution's Fisher form is still
+$\sum_i dp_i^2/p_i$. All these local statements concern interior probabilities.
+Conditioning can deteriorate near the boundary, where the Fisher coefficients
+$1/p_i$ diverge.
+
+\subsubsection{Effective resistance and inversion conditioning}
+For standard coordinate vectors $e_i,e_j$, define
+\begin{equation}\label{eq:resistance}
+ R_{ij}=(e_i-e_j)^TL_p^\dagger(e_i-e_j).
+\end{equation}
+This is classical effective resistance in a connected weighted network
+\cite{spielman2011}. A prescribed infinitesimal transfer
+$dp=\delta(e_i-e_j)$, keeping all other probabilities fixed, requires
+$d\mu=\delta L_p^\dagger(e_i-e_j)$ and hence
+\begin{equation}\label{eq:resistance_response}
+ d(\mu_i-\mu_j)=\delta R_{ij},\qquad ds^2=\delta^2R_{ij}.
+\end{equation}
+Other utilities will generally have to move as well. Low resistance means
+a smaller relative-score change for this prescribed transfer. All network
+paths contribute; for three vertices,
+$R_{ij}=[w_{ij}+w_{ik}w_{kj}/(w_{ik}+w_{kj})]^{-1}$.
+A strong indirect path can therefore lower resistance even when the direct
+tie weight is small. This is distinct from either $1/w_{ij}$ or factor distance.
+
+Let $0=\lambda_1<\lambda_2\leq\cdots\leq\lambda_n$ be the eigenvalues of
+$L_p$. In the Euclidean norm on $\mathcal T$,
+\begin{equation}\label{eq:spectral}
+ \norm{L_p^\dagger}_{\mathcal T\to\mathcal T}=\frac1{\lambda_2},\qquad
+ \lambda_2=\min_{h\in\mathcal T,\,\norm{h}=1}
+       \sum_{i<j}w_{ij}(h_i-h_j)^2.
+\end{equation}
+The second eigenvalue is the weighted analogue of Fiedler's algebraic
+connectivity \cite{fiedler1973}. A corresponding unit eigenvector, called a
+Fiedler vector, gives a direction of greatest local inverse amplification.
+It can indicate a weak connection between groups of alternatives. However,
+uniformly small conductances also make $\lambda_2$ small; a small absolute
+gap alone does not establish a community partition. Its interpretation
+requires a fixed utility scale and comparison with the overall edge weights.
+When $\lambda_2$ is repeated, the sensitive eigenspace has no distinguished
+single Fiedler vector. These statements concern inversion within a fixed
+contest, not the statistical precision of estimating its covariance.
+
+\subsubsection{Four distinct geometric objects}
+For an interior baseline $p^0=\nabla S(\mu^0)$, the Bregman divergence of
+the conjugate is
+\begin{equation}\label{eq:bregman}
+ D_F(p,p^0)=F(p)-F(p^0)-(\mu^0)^T(p-p^0).
+\end{equation}
+It is generally asymmetric and is not a metric distance. Table~\ref{tab:geometries}
+separates it from the factor and contrast geometries, and from the local
+quadratic form in \eqref{eq:dual_metric}. In particular, for distinct
+alternatives the variance distance is
+$D_{ij}=\operatorname{Var}(\varepsilon_i-\varepsilon_j)
+=\norm{v_i-v_j}^2+d_i+d_j$, with $D_{ii}=0$.
+
+\begin{table}[ht]
+\centering\small
+\caption{Different geometric objects in the same choice model.}\label{tab:geometries}
+\begin{tabular}{>{\raggedright\arraybackslash}p{.17\textwidth}>{\raggedright\arraybackslash}p{.33\textwidth}>{\raggedright\arraybackslash}p{.40\textwidth}}
+\toprule
+Geometry & Object & Interpretation \\
+\midrule
+Factor & $\norm{v_i-v_j}$ & Difference in common-shock exposure \\
+Contrast & $D_{ij}$ & Variance of pairwise performance differences \\
+Bregman & $D_F(p,p^0)$ & Finite allocation discrepancy relative to a baseline \\
+Local Hessian & $dp^TL_p^\dagger dp$ & Quadratic response to an infinitesimal probability adjustment \\
+\bottomrule
+\end{tabular}
+\end{table}
+Factor geometry and diagonal noise determine the contrast law. The local
+response geometry also depends on relative means and the full current menu.
+Effective resistance is a distance between vertices of the graph at that
+state; it is not the geodesic distance between two probability vectors.
+
 \subsection{Why simply renormalizing probabilities changes the model}
 Independent Gumbel shocks give the logit probabilities
 \[
- p_i^T=\frac{\exp(\mu_i/b)}{\sum_{j\in T}\exp(\mu_j/b)},\qquad b>0.
+ p_i^T=\frac{\exp(\mu_i/\tau)}{\sum_{j\in T}\exp(\mu_j/\tau)},\qquad \tau>0.
 \]
 Removing alternatives merely renormalizes the retained probabilities. This is the independence-of-irrelevant-alternatives property. Gaussian shocks generally give different substitution patterns, even when independent. Correlated Gaussian shocks permit additional departures because alternatives can share performance variation.
 
@@ -129,6 +298,11 @@ For the three winning probabilities in the introduction,
  \Prob\{A\text{ wins}\mid\text{the winner is }A\text{ or }B\}=\frac{0.5}{0.5+0.3}=0.625.
 \]
 This conditions on an event in the original contest. Removing $C$ asks for $\Prob(U_A>U_B)$, which also counts outcomes in which $C$ would have finished first. It is a different event. In a real election, removing a candidate could also change behavior; the contest calculation describes deletion with the latent joint law held fixed.
+
+The Gumbel benchmark therefore has both a finite deletion rule and the local
+Fisher--Rao form \eqref{eq:gumbel_metric}. Gaussian choice changes both
+features: its deletion probabilities generally do not renormalize, and its
+local substitution metric is not determined by the probability vector alone.
 
 \section{Prediction markets: ranked contracts and market making}\label{sec:markets}
 
@@ -156,6 +330,25 @@ The discrepancy in the deletion probability is smaller in this example: $A$ beat
  0.5\frac{0.3}{0.5}+0.3\frac{0.5}{0.7}=0.514285\ldots.
 \]
 Each answer is coherent within its stated model. Empirical discrimination requires information about rankings, joint performances, or suitably calibrated additional contests.
+
+The same fitted models illustrate the local difference. Table~\ref{tab:geometry}
+uses the covariances in \eqref{eq:two_contests} and the calibrated means in
+Table~\ref{tab:inverse}. It computes tie weights, resistance, and the largest
+local inverse amplification. The common vector $(0.5,0.3,0.2)$ is compatible
+with $R_{AB}=4.3291$ or $2.0162$ in the chosen utility units. In the second
+model a small prescribed transfer from $B$ to $A$ requires less change in
+$\mu_A-\mu_B$, even though the worst inverse sensitivity across all tangent
+directions is slightly larger. Pair-specific resistance and the global
+spectral quantity answer different questions.
+
+\begin{table}[ht]
+\centering
+\caption{Local geometry at the same winner probabilities $(0.5,0.3,0.2)$.
+Both models have unit marginal shock variances. Weights are in inverse
+utility units; resistance and inverse amplification are in utility units.}
+\label{tab:geometry}
+\begin{adjustbox}{max width=\textwidth}\input{generated/geometry.tex}\end{adjustbox}
+\end{table}
 
 This reasoning applies to contracts on a ranked competition, such as a forecasting tournament or a sporting event with a defined finishing order. A collection of unrelated binary prediction markets is not a single multinomial contest: several events can occur together. Modeling such markets jointly requires an outcome space or a joint event model. Assigning all their prices to one winner vector would impose the wrong settlement structure.
 
@@ -190,6 +383,34 @@ Table~\ref{tab:market} gives prices and total revenue from zero inventory. The l
 \end{table}
 
 With correlated Gaussian shocks, the same proof applies. The covariance controls how prices respond jointly to trades. It represents a design choice for liquidity unless separately calibrated as a performance model. In particular, these latent shocks are not the realized payoffs of the outcome securities: those payoffs are mutually exclusive indicator variables. A comparison with a logarithmic market scoring rule would need to match a specified liquidity or loss-budget criterion, rather than merely use the same symbol $b$.
+
+\subsection{Local liquidity and price response}\label{subsec:liquidity}
+For the smooth, nondegenerate Gaussian setting of Section~\ref{subsec:geometry},
+differentiating \eqref{eq:market_cost} gives
+\begin{equation}\label{eq:market_hessian}
+ \nabla_q^2\mathcal C(q)=\frac1bL(q/b),\qquad
+ dp=\frac1bL(q/b)\,dq.
+\end{equation}
+Thus $-w_{ij}/b$ is the marginal change in price $i$ when an additional share
+of outcome $j\ne i$ is bought. Larger weights give larger cross-price
+effects in magnitude. For unit-scale Gumbel shocks, the construction is the
+logarithmic market scoring rule up to an additive constant, with Hessian
+$(\diag(p)-pp^T)/b$. A Gaussian design can instead have either of the
+local response matrices in Table~\ref{tab:geometry} at the same prices.
+
+To produce the transfer $dp=\delta(e_i-e_j)$ while keeping other prices fixed,
+the centered inventory change is
+$dq=b\delta L_p^\dagger(e_i-e_j)$. Consequently
+$d(q_i-q_j)=b\delta R_{ij}$. Low resistance means that fewer relative shares
+are needed for the prescribed price change; it describes greater price
+impact in this direction, not greater depth under the usual quantity-based
+meaning of liquidity. Along a Fiedler direction, a unit probability
+displacement instead requires inventory displacement of magnitude
+$b/\lambda_2$ to first order. A relative bottleneck can make shifts between
+outcome groups less price-sensitive than shifts within them. These are local
+properties of the mechanism, conditional on its chosen shock law; they are
+neither estimates of realized payoff covariance nor a model of information
+arriving through order flow.
 
 \section{Agentic commerce: selecting and replacing providers}\label{sec:commerce}
 
@@ -258,6 +479,30 @@ Knowing deterministic scores need not reveal the covariance of their random comp
 
 The forecasting history suggests a natural evaluation order: record submissions and timing, measure outcomes under an agreed rule, estimate comparative behavior using only information available at the decision date, and assess future routing on new tasks. The contest model should not replace the underlying record of forecast calibration, service cost, or realized utility. Those measurements determine whether its counterfactual calculations are useful.
 
+\subsection{Substitution among providers in the current menu}
+In the provider example, factor distance measures differences in exposure
+to common shocks. Resistance \eqref{eq:resistance} measures the local
+relative-score adjustment for a prescribed transfer of selection probability
+in the whole current menu. It includes indirect substitution paths and can
+change when competitors, baseline scores, or dependence change. There is no
+general proportionality between resistance and squared factor distance.
+
+For a target change $dp$, centered score offsets satisfy
+$d\mu=L_p^\dagger dp$. Under the calibrated monetary model with common
+coefficient $\beta$, the corresponding centered attribute changes satisfy
+$dh=\beta^{-1}L_p^\dagger dp$. A transfer between two providers will usually
+require adjustments at other providers too; raising one offer alone produces
+the different response $dp=\beta L_pe_i\,dh_i$. Feasible offers can also be
+constrained to be nonnegative or to respect budgets.
+
+Resistance may therefore help compare local substitution directions or
+choose which offer adjustments to examine. Removing a provider is a finite
+menu change and requires recomputing the remaining contest, as in
+Table~\ref{tab:providers}; ranking replacements by a pre-deletion resistance
+is not a formula for their new shares. Inquiry cost, latency, capacity,
+verification, and realized service value still determine whether a routing
+or fallback policy is useful.
+
 \section{Learning the joint model from sparse binary experiments}\label{sec:identification}
 
 \subsection{A two-level calculation}
@@ -295,10 +540,16 @@ $\Sigma=VV^T+\diag(d)$ has factor dimension $r$. Select three disjoint groups, e
 Suppose $r\geq1$, $n\geq3(r+1)$, the utility law is Gaussian and stable across menus and interventions, $d_i\geq0$, and every pair has positive contrast variance. Suppose each of three disjoint anchor groups of size $r+1$ is affinely independent in factor space. Two calibrated population response probabilities on every pair meeting the anchor set identify $P\mu$, $PVV^TP$, and $d$ within models of factor dimension at most $r$. Writing $k=3(r+1)$, the number of pairs is $kn-k(k+1)/2$. Reconstruction requires $O(nr^2+r^3)$ arithmetic and $O(nr)$ storage in factor form.
 \end{theorem}
 
+\subsubsection{Why the rectangular difference works}
 The cancellation behind the theorem can be seen without the full proof. For distinct indices,
 \[
- D_{ij}=\norm{v_i-v_j}^2+d_i+d_j.
+ D_{ij}=\norm{v_i-v_j}^2+d_i+d_j
+ =\bigl(\norm{v_i}^2+d_i\bigr)+\bigl(\norm{v_j}^2+d_j\bigr)-2v_i^Tv_j.
 \]
+There are two terms that depend on a single endpoint and one bilinear
+interaction. A four-point rectangle subtracts the row and column effects,
+so it can remove the unknown idiosyncratic variances together with the
+squared norms, without estimating either first.
 Choose base alternatives $a_0,b_0,h_0$ in the three groups. If the rows of $X,Y,Z$ are the loading differences within the respective groups, then the rectangular differences
 \[
  -\tfrac12(D_{a_kb_\ell}-D_{a_kb_0}-D_{a_0b_\ell}+D_{a_0b_0})
@@ -310,6 +561,26 @@ $K_{AB}=XY^T$, $K_{AH}=XZ^T$, and $K_{BH}=YZ^T$. Their invertibility yields
  K_{AB}K_{BH}^{-T}K_{AH}^T=XX^T.
 \end{equation}
 This recovers the metric in one reference group. Additional cross differences locate the other loadings up to a common Euclidean motion. Residuals $D_{ij}-\norm{v_i-v_j}^2=d_i+d_j$ on a triangle and a star recover the individual variances. The use of disjoint full-rank covariance blocks is related to classical factor identification by Anderson and Rubin \cite{anderson1956}; the experimental variance-distance construction supplies those blocks here.
+
+\subsubsection{What the third group supplies}
+The cross-product $K_{AB}=XY^T$ alone identifies a bilinear pairing between
+two unknown coordinate systems. For any invertible $r\times r$ matrix $Q$,
+\[
+ X\longmapsto XQ,\qquad Y\longmapsto YQ^{-T}
+\]
+leaves that product unchanged, while generally changing $XX^T$. The two
+additional products $XZ^T$ and $YZ^T$ connect both coordinate systems to
+a third one. In \eqref{eq:metric},
+$K_{BH}^{-T}=Y^{-T}Z^{-1}$, so the intermediate factors cancel and give
+$XX^T$. The Euclidean inner product is then recovered, with only a common
+rotation or reflection remaining after the choice of origin.
+
+For one factor this is the identity $x^2=(xy)(xz)/(yz)$ for nonzero $x,y,z$.
+The products $xy$ and $xz$ alone permit reciprocal rescaling; $yz$ fixes
+the scale. This explains why the stated reconstruction uses three groups.
+It is not a lower-bound theorem asserting that every design with two groups
+fails: the ambiguity of one cross-product does not by itself analyze all
+within-group observations, other observed pairs, or additional restrictions.
 
 \begin{example}[One factor and eight alternatives]
 Table~\ref{tab:anchors} gives complete input parameters. Take anchor groups $(A,B)$, $(C,D)$, and $(E,F)$, with loading differences $X=1$, $Y=2$, $Z=3$. Then $K_{AB}=2$, $K_{AH}=3$, and $K_{BH}=6$, so \eqref{eq:metric} gives $1$. The variance distances $D_{AC}=4.6$, $D_{BC}=1.7$, $D_{AD}=16.7$, and $D_{BD}=9.8$ directly give
@@ -329,6 +600,14 @@ The savings become substantial in larger systems. With $n=100$ and $r=3$, twelve
 The requirement that the anchor groups span factor space is material. The result does not supply an automatic way to find well-conditioned groups from an arbitrary catalog. Nearly parallel loading differences can make the inverse unstable. Under bounded parameters, response probabilities bounded away from zero and one, a treatment gap bounded away from zero, and uniformly conditioned groups, \cite{wuebben2026} proves local maximum-norm stability. With $N$ independent observations per treatment level on $m$ pairs, the corresponding error has order
 $\sqrt{\log(m/\alpha)/N}$ at confidence $1-\alpha$, with constants depending on those conditions. This is a local statement about a specified inverse. It is not a global convergence theorem for nonlinear fitting, nor a guarantee of uniform accuracy on menus whose size grows without restriction.
 
+There are consequently two separate conditioning questions. Anchor singular
+values and treatment overlap control recovery of the latent contrast law
+from binary experiments. Once that law is fixed, $1/\lambda_2$ in
+\eqref{eq:spectral} controls local inversion of winner probabilities into
+relative means. Well-conditioned anchors do not guarantee a uniform spectral
+gap at every target probability, and exact knowledge of the covariance does
+not eliminate sensitivity near weak substitution directions.
+
 \subsection{What the extension adds in practice}
 In controlled human choice, the experiments estimate substitution under the common-coefficient and stable Gaussian assumptions. In algorithmic selection, the recovered contrast law supplies winner and ranking probabilities on unobserved subsets. Expected-best-score comparisons also require inquiry costs expressed in the same identified score scale. The ranked-contract example has an experimental interpretation only if calibrated shifts to the underlying contestant performances are feasible; a subsidy for buying a contract does not shift the performance of the contestant on which it pays. Elections, sports, and asset markets do not supply such an intervention merely because their outcomes can be represented by a contest model.
 
@@ -343,16 +622,20 @@ Portfolio decisions involve several different objects: asset-return risk, select
 
 An offset to an expected-return signal or a cost penalty inside an allocation algorithm changes that algorithm's inputs. If its selection rule has the assumed Gaussian form, the intervention can characterize its choice behavior. It does not supply a calibrated change in market returns or investors' latent preferences. Finance is therefore an illustration of model-based allocation and identification limits here, rather than an established empirical application of the intervention theorem.
 
-For a specified Gaussian score model, the convex conjugate of \eqref{eq:surplus} is
-\[
- F(p)=\sup_{\mu\in\R^n}\{p^T\mu-S(\mu)\},\qquad
- p\in\Delta_n:=\{p\geq0:\one^Tp=1\}.
-\]
-On the interior of the simplex, $\nabla F(p)$ gives the relative utilities that generate $p$, interpreted modulo a common constant. If $p^0=\nabla S(\mu^0)$ is a baseline allocation, its Bregman divergence is
-\begin{equation}\label{eq:bregman}
- D_F(p,p^0)=F(p)-F(p^0)-(\mu^0)^T(p-p^0).
-\end{equation}
+For a specified Gaussian score model, use the conjugate $F$ in
+\eqref{eq:conjugate} and its Bregman divergence \eqref{eq:bregman} from an
+interior baseline $p^0=\nabla S(\mu^0)$.
 Minimizing this quantity under linear constraints preserves the baseline in the geometry induced by the score model. This supplies a particular allocation objective, not a universal rule for assigning capital.
+
+The link to local substitution is the Taylor expansion, for $h\in\mathcal T$,
+\begin{equation}\label{eq:bregman_local}
+ D_F(p^0+h,p^0)=\tfrac12h^TL_{p^0}^\dagger h+o(\norm{h}^2).
+\end{equation}
+Thus the allocation criterion has one half of the same local quadratic
+form as \eqref{eq:dual_metric}. For finite movements, the Bregman divergence
+is generally neither symmetric nor the squared geodesic distance of this
+metric. The expansion supplies a local connection, not an identity between
+the two global objects.
 
 For an interior constrained optimum under a constraint qualification, the multiplier of a cap $p_A\leq0.1$ subtracts a nonnegative amount $\lambda$ from utility $\mu_A^0$. Indeed the first-order condition is
 \[
@@ -390,6 +673,21 @@ For a zero-net-investment return contrast $w$ satisfying $\one^Tw=0$, the risk $
 \section{Validation and reproducibility}
 All examples use specified synthetic distributions. The three-way inversions and ranking probabilities reduce to one-dimensional quadrature formulas for bivariate Gaussian probabilities. The market-maker costs are integrated from the tails of the maximum of independent Gaussian variables. The derivative of the cost was checked against the calculated probability vector, with maximum discrepancy below $10^{-8}$. All inquiry subsets of size one or two were evaluated using \eqref{eq:pair_max}.
 
+For Table~\ref{tab:geometry}, Gaussian conditioning evaluates each tie weight
+as the density of $U_i-U_j$ at zero times the conditional probability of
+beating the third alternative. Central differences of independently
+integrated winner probabilities agree with the resulting Hessians to within
+$3\times10^{-9}$ in maximum entry error. Separate perturbations check the
+inverse derivative and the market scale $L/b$. Numerical integration of
+$dF=\mu(p)^Tdp$ along a probability segment checks the local Bregman
+expansion. The Gumbel scale identity and the matrix order in the three-group
+reconstruction are also checked directly. These are numerical diagnostics
+for the stated examples.\footnote{Run
+\texttt{.venv/bin/python companion/src/geometry.py} after the example
+calculation. Inputs and results are recorded in
+\texttt{companion/output/geometry.json}; it generates the additional
+numerical table.}
+
 The five-provider probabilities use Gaussian orthant integration with requested absolute and relative tolerances $10^{-8}$ and a maximum integration budget of 4,194,304. A second random seed changes the deletion probabilities by less than $5\times10^{-7}$. This agreement is a numerical diagnostic rather than a rigorous integration-error bound. The capped allocation reuses the synthetic calculation in \cite{wuebben2026}, including its separate integration check. The numerical source, parameters, output values, and hashes are included in the companion's accompanying files.\footnote{From the project root, run \texttt{.venv/bin/python companion/src/examples.py}. Results are written to \texttt{companion/output/examples.json}; tables and the figure are generated from the same run. The retained allocation input is \texttt{output/geometry.json}.}
 
 The figures plot the stated synthetic calculations. The source and outputs make the computations available for independent examination.
@@ -400,6 +698,14 @@ For an empirical application, three comparisons would be particularly informativ
 The most immediate application of contest inversion is to extract a coherent set of additional probabilities from an existing probability vector under an explicit performance model. Ranked contracts, provider withdrawal, and inquiry selection all use that capability. The identification extension supplies a way to estimate the Gaussian contrast structure when calibrated binary experiments and suitably diverse reference alternatives are available. The practical research questions are consequently concrete: how to find well-conditioned reference groups, how to choose informative treatments at limited cost, and how to detect changes in the service population or task distribution.
 
 Cotton's microprediction program emphasizes repeated, inexpensive quantitative decisions supplied by autonomous contributors. That setting offers many opportunities to measure prediction quality and routing performance prospectively. It also makes information timing and evaluation incentives consequential. An experiment should preserve the distinction between producing a forecast, valuing a forecast, and choosing a supplier of forecasts. The present examples show calculations that can support those decisions; their usefulness depends on demonstrating that the chosen contest remains a good model of the task.
+
+The local geometry helps formulate further tests. At equal winner shares,
+different joint laws can predict different responses to calibrated score
+changes. Those responses could be compared on new tasks, while accounting
+for the separate costs of learning the covariance and inverting the fitted
+contest. Resistance and spectral diagnostics summarize such model-dependent
+responses; whether they improve market design or provider selection remains
+an application question.
 
 \bibliographystyle{amsalpha}
 \bibliography{references}
