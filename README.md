@@ -5,6 +5,8 @@ choice models, using them for decisions, and testing their commercial value.
 This repository includes the manuscripts, LaTeX sources, numerical programs,
 and the results used to produce their tables and figures.
 
+Author's website: https://bwuebben.github.io/
+
 ## Papers
 
 | Paper | Contribution | Files |
